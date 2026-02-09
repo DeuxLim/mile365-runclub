@@ -1,9 +1,20 @@
+// routes/router.jsx
 import { createBrowserRouter } from "react-router";
-import LandingPage from "../features/landing/pages/LandingPage";
+import { lazy } from "react";
+import RootLayout from "../layouts/RootLayout";
+import { ROUTES } from "./paths.tsx";
 
-export const routes = createBrowserRouter([
+const LandingPage = lazy(() => import("../features/landing/pages/LandingPage"));
+
+export const router = createBrowserRouter([
 	{
-		path: "/",
-		Component: LandingPage,
+		path: ROUTES.HOME,
+		element: <RootLayout />,
+		children: [
+			{
+				index: true,
+				element: <LandingPage />,
+			},
+		],
 	},
 ]);
