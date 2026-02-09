@@ -12,11 +12,13 @@ export default {
 					gray: "#9CA3AF",
 				},
 			},
-			letterSpacing: {
-				widest: ".25em",
-			},
 			fontFamily: {
-				sans: ["IBM Plex Sans Condensed", "system-ui", "sans-serif"],
+				sans: ["Archivo", "system-ui", "sans-serif"], // body
+				editorial: ["Archivo Narrow", "system-ui", "sans-serif"], // nav, labels, hero
+			},
+			letterSpacing: {
+				nav: "0.14em",
+				editorial: "0.18em",
 			},
 		},
 	},
