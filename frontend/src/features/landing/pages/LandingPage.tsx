@@ -1,3 +1,36 @@
+import HeroSection from "./HeroSection";
+
 export default function LandingPage() {
-	return <div>Landing Page</div>;
+	return (
+		<div className="overflow-hidden">
+			{/* Hero Section */}
+			<HeroSection />
+
+			{/* Runs */}
+			<section
+				id="runs"
+				className="h-screen border flex justify-center items-center text-9xl font-extrabold"
+			>
+				Runs
+			</section>
+
+			{/* About */}
+			<section
+				id="about"
+				className="h-screen border flex justify-center items-center text-9xl font-extrabold"
+			>
+				About
+			</section>
+
+			{/* Community */}
+			<section
+				id="community"
+				className="h-screen border flex justify-center items-center text-9xl font-extrabold"
+			>
+				Community
+			</section>
+
+			{/* <FontTester/> */}
+		</div>
+	);
 }
