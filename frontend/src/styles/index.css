@@ -1,1 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&display=swap");
+/* ===== ESSENTIALS / 247 utilitarian font stack ===== */
+
+/* Core minimalist grotesk */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&display=swap");
+
+/* Condensed / performance / athletic */
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap");
+
+/* Numbers / pace / timing / data */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+/* Optional alternates (same design direction) */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap");
 @import "tailwindcss";
+
+@theme {
+	/* Core */
+	--font-inter:
+		"Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-space-grotesk: "Space Grotesk", sans-serif;
+	--font-bebas: "Bebas Nueue", sans-serif;
+	--font-manrope: "Manrope", sans-serif;
+	--font-archivo: "Archivo", sans-serif;
+
+	/* Condensed / performance */
+	--font-rajdhani: "Rajdhani", sans-serif;
+	--font-barlow-condensed: "Barlow Condensed", sans-serif;
+
+	/* Data / numbers */
+	--font-jetbrains-mono: "JetBrains Mono", monospace;
+	--font-ibm-plex-mono: "IBM Plex Mono", monospace;
+
+	/* Alternates */
+	--font-sora: "Sora", sans-serif;
+	--font-roboto: "Roboto", sans-serif;
+	--font-source-sans: "Source Sans 3", sans-serif;
+}
+
+/* Fonts */
+.font-inter {
+	font-family: var(--font-inter);
+}
+.font-bebas {
+	font-family: var(--font-bebas);
+}
+.font-space-grotesk {
+	font-family: var(--font-space-grotesk);
+}
+.font-manrope {
+	font-family: var(--font-manrope);
+}
+.font-archivo {
+	font-family: var(--font-archivo);
+}
+
+.font-rajdhani {
+	font-family: var(--font-rajdhani);
+}
+.font-barlow-condensed {
+	font-family: var(--font-barlow-condensed);
+}
+
+.font-jetbrains-mono {
+	font-family: var(--font-jetbrains-mono);
+}
+.font-ibm-plex-mono {
+	font-family: var(--font-ibm-plex-mono);
+}
+
+.font-sora {
+	font-family: var(--font-sora);
+}
+.font-roboto {
+	font-family: var(--font-roboto);
+}
+.font-source-sans {
+	font-family: var(--font-source-sans);
+}
+
+/* App Styles Start */
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--font-display);
+	background: black;
+	color: white;
+}
+
+@keyframes progress {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+.animate-progress {
+	animation: progress 5s linear;
+}
