@@ -74,10 +74,10 @@ export default function Navbar() {
 								<a href="#home">Home</a>
 							</li>
 							<li>
-								<a href="#runs">Runs</a>
+								<a href="#about">About</a>
 							</li>
 							<li>
-								<a href="#about">About</a>
+								<a href="#runs">Runs</a>
 							</li>
 							<li>
 								<a href="#community">Community</a>
