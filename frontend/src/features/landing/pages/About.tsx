@@ -24,7 +24,7 @@ export default function About() {
 
 			<div className="flex flex-1 p-20">
 				<div className="w-[40%] flex justify-start items-center">
-					<ul
+					<div
 						className="
                         p-20 
                         font-heading
@@ -34,19 +34,18 @@ export default function About() {
                         flex
                         flex-col
                         gap-10
-                        [&>li]:border-b
-                        [&>li]:border-gray-400
-                        [&>li]:p-2
+                        [&>div]:border-b
+                        [&>div]:p-2
                         "
 					>
-						<li>Consistency</li>
-						<li>Structure</li>
-						<li>Community</li>
-					</ul>
+						<div className="">Consistency</div>
+						<div className="border-zinc-500">Structure</div>
+						<div className="border-zinc-500">Community</div>
+					</div>
 				</div>
 
 				<div className="w-[60%] flex justify-center items-center">
-					<div className="w-full border h-full m-10"></div>
+					<div className="w-full h-full m-10"></div>
 				</div>
 			</div>
 		</section>
