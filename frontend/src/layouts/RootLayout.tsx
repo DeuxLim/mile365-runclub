@@ -7,9 +7,9 @@ import PageLoader from "../components/PageLoader";
 export default function RootLayout() {
 	const [appReady, setAppReady] = useState(false);
 
-	if (!appReady) {
+	/* if (!appReady) {
 		return <PageLoader onFinish={() => setAppReady(true)} />;
-	}
+	} */
 
 	return (
 		<div className="animate-fadeIn">
