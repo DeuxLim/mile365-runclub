@@ -1,5 +1,8 @@
 import About from "./About";
+import Benefits from "./Benefits";
 import HeroSection from "./HeroSection";
+import Schedule from "./Schedule";
+import Target from "./Target";
 
 export default function LandingPage() {
 	return (
@@ -7,24 +10,17 @@ export default function LandingPage() {
 			{/* Hero Section */}
 			<HeroSection />
 
-			{/* About */}
+			{/* About (Who we are) */}
 			<About />
 
-			{/* Runs */}
-			<section
-				id="runs"
-				className="h-screen border flex justify-center items-center text-9xl font-extrabold"
-			>
-				Runs
-			</section>
+			{/* Target (Who can join) */}
+			<Target />
 
-			{/* Community */}
-			<section
-				id="community"
-				className="h-screen border flex justify-center items-center text-9xl font-extrabold"
-			>
-				Community
-			</section>
+			{/* Schedule */}
+			<Schedule />
+
+			{/* Benefits */}
+			<Benefits />
 
 			{/* <FontTester/> */}
 		</div>
