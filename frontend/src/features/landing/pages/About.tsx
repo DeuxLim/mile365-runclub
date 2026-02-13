@@ -38,9 +38,13 @@ export default function About() {
                         [&>div]:p-2
                         "
 					>
-						<div className="">Consistency</div>
-						<div className="border-zinc-500">Structure</div>
-						<div className="border-zinc-500">Community</div>
+						<div className="border-b p-2">Consistency</div>
+						<div className="border-b p-2 text-zinc-500 border-zinc-500">
+							Structure
+						</div>
+						<div className="border-b p-2 text-zinc-500 border-zinc-500">
+							Community
+						</div>
 					</div>
 				</div>
 
