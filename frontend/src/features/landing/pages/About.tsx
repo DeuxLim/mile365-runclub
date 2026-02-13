@@ -1,57 +1,102 @@
-export default function About() {
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+type Pillar = {
+	title: string;
+	description: string;
+};
+
+const pillars: Pillar[] = [
+	{
+		title: "CONSISTENCY",
+		description:
+			"MILE 365 was built on showing up daily. Not when motivated. Not when convenient. Every day builds identity.",
+	},
+	{
+		title: "COMMUNITY",
+		description:
+			"From first 1KM to long runs, we grow together. No egos. No gatekeeping. Just runners pushing runners.",
+	},
+	{
+		title: "DISCIPLINE",
+		description:
+			"365 is a mentality. Progress isn’t seasonal. It’s built mile by mile, all year long.",
+	},
+];
+
+export default function Identity() {
+	const [active, setActive] = useState(0);
+
 	return (
-		<section id="about" className="h-screen flex flex-col p-4">
-			<div className="h-[40%] flex justify-center items-center flex-col gap-4">
-				<h1 className="font-heading text-4xl md:text-7xl font-black">
-					Built on Consistency.
-					<br />
-					Driven by Community.
-				</h1>
+		<motion.section
+			id="identity"
+			className="min-h-screen bg-white text-black flex items-center px-6 md:px-24"
+			initial={{ opacity: 0, y: 40 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true }}
+			transition={{ duration: 0.8, ease: "easeOut" }}
+		>
+			<div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
+				{/* LEFT */}
+				<div className="space-y-8">
+					<p className="font-body text-sm uppercase tracking-[0.3em] text-neutral-500">
+						Our Identity
+					</p>
 
-				<div className="flex flex-col px-5">
-					<div className="font-body text-gray-300 text-sm text-center md:text-lg">
-						MILE 365 Run Club is a Bulacan-based running community
-						built for beginners to performance runners who believe
-						in daily progress.
-					</div>
+					<h2 className="font-heading text-3xl md:text-5xl leading-tight tracking-tight">
+						We’re not built on hype.
+						<br />
+						We’re built on what happens
+						<br />
+						every single day.
+					</h2>
 
-					<div className="text-center text-gray-300 text-sm md:text-lg">
-						We train with structure. We run with discipline. We grow
-						together — 365 days a year.
-					</div>
+					<p className="font-body text-lg text-neutral-600 leading-relaxed">
+						MILE 365 exists for runners who choose discipline over
+						excuses. Whether it’s your first kilometer or your
+						longest run — you belong here.
+					</p>
+				</div>
+
+				{/* RIGHT */}
+				<div className="space-y-10">
+					{pillars.map((pillar, index) => {
+						const isActive = active === index;
+
+						return (
+							<div
+								key={pillar.title}
+								onMouseEnter={() => setActive(index)}
+								onClick={() => setActive(index)}
+								className="cursor-pointer"
+							>
+								<motion.h3
+									animate={{
+										opacity: isActive ? 1 : 0.4,
+										scale: isActive ? 1.03 : 1,
+									}}
+									transition={{ duration: 0.3 }}
+									className="font-heading text-2xl md:text-3xl"
+								>
+									{pillar.title}
+								</motion.h3>
+
+								{/* Keep mounted — just animate visibility */}
+								<motion.p
+									animate={{
+										opacity: isActive ? 1 : 0,
+										height: isActive ? "auto" : 0,
+									}}
+									transition={{ duration: 0.3 }}
+									className="font-body mt-4 text-neutral-600 leading-relaxed overflow-hidden"
+								>
+									{pillar.description}
+								</motion.p>
+							</div>
+						);
+					})}
 				</div>
 			</div>
-
-			<div className="flex flex-1 p-20">
-				<div className="w-[40%] flex justify-start items-center">
-					<div
-						className="
-                        p-20 
-                        font-heading
-                        text-4xl 
-                        font-semibold
-                        w-[90%]
-                        flex
-                        flex-col
-                        gap-10
-                        [&>div]:border-b
-                        [&>div]:p-2
-                        "
-					>
-						<div className="border-b p-2">Consistency</div>
-						<div className="border-b p-2 text-zinc-500 border-zinc-500">
-							Structure
-						</div>
-						<div className="border-b p-2 text-zinc-500 border-zinc-500">
-							Community
-						</div>
-					</div>
-				</div>
-
-				<div className="w-[60%] flex justify-center items-center">
-					<div className="w-full h-full m-10"></div>
-				</div>
-			</div>
-		</section>
+		</motion.section>
 	);
 }
