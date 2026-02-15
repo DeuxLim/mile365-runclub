@@ -2,6 +2,7 @@ import About from "./About";
 import Benefits from "./Benefits";
 import FAQ from "./Faq";
 import FinalCTA from "./FinalCTA";
+import Gallery from "./Gallery";
 import HeroSection from "./HeroSection";
 import Schedule from "./Schedule";
 import SocialProof from "./SocialProof";
@@ -17,6 +18,7 @@ export default function LandingPage() {
 			<About />
 			<Target />
 			<Schedule />
+			<Gallery />
 			<Benefits />
 			<SocialProof />
 			<FAQ />

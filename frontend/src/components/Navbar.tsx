@@ -150,6 +150,9 @@ export default function Navbar() {
 							<li>
 								<a href="/#faq">FAQ</a>
 							</li>
+							<li>
+								<a href="/#gallery">Club Gallery</a>
+							</li>
 						</ul>
 					</div>
 
