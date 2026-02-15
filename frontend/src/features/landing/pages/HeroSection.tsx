@@ -17,22 +17,24 @@ export default function HeroSection() {
 		if (!video) return;
 
 		const handleTimeUpdate = () => {
-			if (!video.duration || video.duration === 0) return;
-
+			if (!video.duration) return;
 			const percent = (video.currentTime / video.duration) * 100;
 			setProgress(percent);
 		};
 
 		video.addEventListener("timeupdate", handleTimeUpdate);
-
 		return () => {
 			video.removeEventListener("timeupdate", handleTimeUpdate);
 		};
 	}, []);
 
 	return (
-		<section id="home" className="relative h-screen overflow-hidden">
-			{/* Video background */}
+		<section
+			id="home"
+			data-theme="dark"
+			className="relative h-screen overflow-hidden snap-start"
+		>
+			{/* Background Video */}
 			<video
 				ref={videoRef}
 				autoPlay
@@ -44,49 +46,54 @@ export default function HeroSection() {
 				<source src={hero_video} type="video/mp4" />
 			</video>
 
-			{/* Dark overlay */}
-			<div className="absolute inset-0 bg-black/65" />
+			{/* Overlay */}
+			<div className="absolute inset-0 bg-black/70" />
 
 			{/* Content */}
-			<div className="relative z-10 flex h-full flex-col items-center justify-center text-white text-center px-6">
-				<h1 className="text-4xl md:text-7xl font-heading uppercase font-black tracking-tighter">
-					<DecryptedText
-						text="MILE 365 RUN CLUB"
-						animateOn="view"
-						revealDirection="start"
-						sequential
-						useOriginalCharsOnly={false}
-					/>
-				</h1>
+			<div className="relative z-10 h-full flex items-center px-6 md:px-24">
+				<div className="max-w-6xl mx-auto w-full text-center text-white flex flex-col items-center">
+					<h1 className="text-5xl md:text-7xl font-heading uppercase font-black tracking-tight leading-[1.05]">
+						<DecryptedText
+							text="MILE 365 RUN CLUB"
+							animateOn="view"
+							revealDirection="start"
+							sequential
+							useOriginalCharsOnly={false}
+						/>
+					</h1>
 
-				<p className="font-body text-sm md:text-lg mt-4 max-w-xl md:max-w-2xl mx-8 px-3 leading-relaxed">
-					More than a run club - it's a commitment. To show up, stay
-					consistent, and move forward with a group that keeps pushing
-					no matter the pace, weather, or distance.
-				</p>
+					<p className="mt-8 max-w-2xl text-base md:text-lg text-neutral-300 leading-relaxed">
+						More than a run club — it’s a commitment. Show up, stay
+						consistent, and move forward with a community that
+						trains hard and grows together.
+					</p>
 
-				<div className="flex gap-4 font-semibold mt-8">
-					<button className="px-6 py-4 text-xs tracking-widest border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white hover:text-black transition">
-						RUN WITH US
-					</button>
+					<div className="flex gap-6 mt-12">
+						<button className="px-8 py-4 text-xs tracking-widest uppercase border border-white/30 bg-white text-black hover:bg-transparent hover:text-white transition-all duration-300">
+							Run With Us
+						</button>
 
-					<button className="px-6 py-4 text-xs tracking-widest border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white hover:text-black transition">
-						VIEW SCHEDULE
-					</button>
+						<a
+							href="#schedule"
+							className="px-8 py-4 text-xs tracking-widest uppercase border border-white/30 hover:bg-white hover:text-black transition-all duration-300"
+						>
+							View Schedule
+						</a>
+					</div>
 				</div>
 			</div>
 
-			{/* Floating progress bar inside hero */}
+			{/* Progress Bar */}
 			<div
 				className={`
-					pointer-events-none absolute left-6 right-6 bottom-8 z-20
+					pointer-events-none absolute left-24 right-24 bottom-10 z-20
 					transform transition-all duration-700 ease-out
 					${barVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}
 				`}
 			>
-				<div className="w-full h-0.75 bg-white/20 rounded-full overflow-hidden">
+				<div className="w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
 					<div
-						className="h-full bg-white transition-[width] duration-900 ease-linear"
+						className="h-full bg-white transition-[width] duration-700 ease-linear"
 						style={{ width: `${progress}%` }}
 					/>
 				</div>
