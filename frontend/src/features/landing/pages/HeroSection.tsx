@@ -69,9 +69,9 @@ export default function HeroSection() {
 					</p>
 
 					<div className="flex gap-6 mt-12">
-						<button className="px-8 py-4 text-xs tracking-widest uppercase border border-white/30 bg-white text-black hover:bg-transparent hover:text-white transition-all duration-300">
+						<a href="/#join" className="px-8 py-4 text-xs tracking-widest uppercase border border-white/30 bg-white text-black hover:bg-transparent hover:text-white transition-all duration-300">
 							Run With Us
-						</button>
+						</a>
 
 						<a
 							href="#schedule"

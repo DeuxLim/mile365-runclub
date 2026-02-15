@@ -6,6 +6,8 @@ import { ROUTES } from "./paths.tsx";
 
 const LandingPage = lazy(() => import("../features/landing/pages/LandingPage"));
 
+const JoinPage = lazy(() => import("../features/join/pages/JoinPage"));
+
 export const router = createBrowserRouter([
 	{
 		path: ROUTES.HOME,
@@ -14,6 +16,10 @@ export const router = createBrowserRouter([
 			{
 				index: true,
 				element: <LandingPage />,
+			},
+			{
+				path: ROUTES.JOIN,
+				element: <JoinPage />,
 			},
 		],
 	},

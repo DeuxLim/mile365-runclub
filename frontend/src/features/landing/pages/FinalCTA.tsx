@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 export default function FinalCTA() {
 	return (
@@ -31,13 +32,19 @@ export default function FinalCTA() {
 				</p>
 
 				<div className="flex justify-center gap-6 mt-12">
-					<button className="px-10 py-4 text-xs tracking-widest uppercase bg-black text-white hover:bg-neutral-800 transition-all duration-300">
+					<Link
+						to="/join"
+						className="px-10 py-4 text-xs tracking-widest uppercase bg-black text-white hover:bg-neutral-800 transition-all duration-300"
+					>
 						Apply to Join
-					</button>
+					</Link>
 
-					<button className="px-10 py-4 text-xs tracking-widest uppercase border border-black hover:bg-black hover:text-white transition-all duration-300">
+					<a
+						href="/#schedule"
+						className="px-10 py-4 text-xs tracking-widest uppercase border border-black hover:bg-black hover:text-white transition-all duration-300"
+					>
 						View Weekly Schedule
-					</button>
+					</a>
 				</div>
 			</div>
 		</motion.section>
