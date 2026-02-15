@@ -9,6 +9,7 @@ export default function About() {
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true }}
 			transition={{ duration: 0.8 }}
+			data-theme="light"
 		>
 			<div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 md:gap-24 items-center">
 				{/* LEFT CONTENT */}

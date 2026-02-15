@@ -4,6 +4,7 @@ export default function FinalCTA() {
 	return (
 		<motion.section
 			id="join"
+			data-theme="light"
 			className="h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}

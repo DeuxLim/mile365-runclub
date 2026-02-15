@@ -32,6 +32,7 @@ export default function Benefits() {
 		<motion.section
 			id="benefits"
 			className="min-h-[100svh] md:h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start"
+			data-theme="dark"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
 			viewport={{ once: true }}

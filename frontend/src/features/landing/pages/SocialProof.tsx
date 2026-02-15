@@ -19,6 +19,7 @@ export default function SocialProof() {
 	return (
 		<motion.section
 			id="social-proof"
+			data-theme="light"
 			className="min-h-[100svh] md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}

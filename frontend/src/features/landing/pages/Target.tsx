@@ -11,6 +11,7 @@ export default function Target() {
 	return (
 		<motion.section
 			id="target"
+			data-theme="dark"
 			className="relative h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start overflow-hidden"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
