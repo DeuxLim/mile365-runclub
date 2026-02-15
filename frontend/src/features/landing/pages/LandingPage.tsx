@@ -1,28 +1,26 @@
 import About from "./About";
 import Benefits from "./Benefits";
+import FAQ from "./Faq";
+import FinalCTA from "./FinalCTA";
 import HeroSection from "./HeroSection";
 import Schedule from "./Schedule";
+import SocialProof from "./SocialProof";
 import Target from "./Target";
 
 export default function LandingPage() {
 	return (
-		<div className="overflow-hidden">
-			{/* Hero Section */}
+		<div
+			className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth"
+			id="scroll-container"
+		>
 			<HeroSection />
-
-			{/* About (Who we are) */}
 			<About />
-
-			{/* Target (Who can join) */}
 			<Target />
-
-			{/* Schedule */}
 			<Schedule />
-
-			{/* Benefits */}
 			<Benefits />
-
-			{/* <FontTester/> */}
+			<SocialProof />
+			<FAQ />
+			<FinalCTA />
 		</div>
 	);
 }
