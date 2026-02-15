@@ -7,8 +7,16 @@ type MobileMenuProps = {
 	onClose: () => void;
 };
 
+const links = [
+	{ label: "Home", href: "#home" },
+	{ label: "About", href: "#about" },
+	{ label: "Schedule", href: "#schedule" },
+	{ label: "Why Join", href: "#benefits" },
+	{ label: "FAQ", href: "#faq" },
+];
+
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
-	// lock background scroll
+	// Lock scroll
 	useEffect(() => {
 		document.body.style.overflow = open ? "hidden" : "";
 		return () => {
@@ -16,7 +24,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 		};
 	}, [open]);
 
-	// Escape to close
+	// Escape key
 	useEffect(() => {
 		const handler = (e: KeyboardEvent) => {
 			if (e.key === "Escape") onClose();
@@ -28,42 +36,57 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 	return createPortal(
 		<div
 			className={`
-                    fixed inset-0 z-999
-                    bg-white/95 backdrop-blur-md
-                    text-black
-                    transition-[opacity,transform] duration-300 ease-out
-                    ${
-						open
-							? "opacity-100 translate-y-0"
-							: "opacity-0 -translate-y-6 pointer-events-none"
-					}
-                `}
+				fixed inset-0 z-[999] 
+				bg-black text-white
+				transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+				${open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"}
+			`}
 		>
-			{/* close button */}
+			{/* Close Button */}
 			<button
 				onClick={onClose}
-				className="absolute top-8 right-7"
+				className="absolute top-6 right-6"
 				aria-label="Close menu"
 			>
 				<TbX size={28} />
 			</button>
 
-			{/* links */}
-			<div className="flex flex-col h-full justify-center items-center gap-10 text-xl font-semibold">
-				{["Home", "Runs", "About", "Community"].map((item, i) => (
+			{/* Menu Content */}
+			<div className="flex flex-col h-full justify-center items-center space-y-10">
+				{links.map((item, i) => (
 					<a
-						key={item}
-						href={`#${item.toLowerCase()}`}
+						key={item.label}
+						href={item.href}
 						onClick={onClose}
 						className={`
+							text-2xl uppercase tracking-widest font-semibold
 							transition-all duration-300
-							${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+							${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
 						`}
-						style={{ transitionDelay: `${i * 70}ms` }}
+						style={{ transitionDelay: `${i * 80}ms` }}
 					>
-						{item}
+						{item.label}
 					</a>
 				))}
+
+				{/* Divider */}
+				<div className="w-12 h-px bg-white/20 my-4" />
+
+				{/* CTA */}
+				<a
+					href="#join"
+					onClick={onClose}
+					className={`
+						mt-4 px-8 py-3 text-xs uppercase tracking-widest
+						border border-white
+						hover:bg-white hover:text-black
+						transition-all duration-300
+						${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+					`}
+					style={{ transitionDelay: `${links.length * 80}ms` }}
+				>
+					Join Mile 365
+				</a>
 			</div>
 		</div>,
 		document.body,

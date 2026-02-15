@@ -2,103 +2,116 @@ import { useEffect, useRef, useState } from "react";
 import logo from "../assets/photos/365_logo.png";
 import { TbMenu, TbX } from "react-icons/tb";
 import MobileMenu from "./MobileMenu";
+import { Link } from "react-router";
 
 export default function Navbar() {
 	const [showNav, setShowNav] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [scrolled, setScrolled] = useState(false);
-	const [introDone, setIntroDone] = useState(false);
+	const [darkMode, setDarkMode] = useState(true);
 	const lastScrollY = useRef(0);
 
-	// INTRO SLIDE — synced with hero progress bar motion
+	// Scroll logic (works with snap container)
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIntroDone(true);
-		}, 400); // same start timing as hero bar
+		const container = document.getElementById("scroll-container");
+		if (!container) return;
 
-		return () => clearTimeout(timer);
-	}, []);
+		const sections = Array.from(
+			container.querySelectorAll("section[data-theme]"),
+		);
 
-	// SCROLL BEHAVIOR
-	useEffect(() => {
 		const handleScroll = () => {
-			const current = window.scrollY;
+			const scrollTop = container.scrollTop;
+			const containerHeight = container.clientHeight;
 
-			if (current > lastScrollY.current && current > 80) {
+			// Hide on scroll down
+			if (scrollTop > lastScrollY.current && scrollTop > 80) {
 				setShowNav(false);
 			} else {
 				setShowNav(true);
 			}
+			lastScrollY.current = scrollTop;
 
-			setScrolled(current > window.innerHeight - 100);
-			lastScrollY.current = current;
+			// Determine active section
+			for (const section of sections) {
+				const offsetTop = section.offsetTop;
+				const offsetHeight = section.offsetHeight;
+
+				if (
+					scrollTop >= offsetTop - containerHeight / 2 &&
+					scrollTop < offsetTop + offsetHeight - containerHeight / 2
+				) {
+					const theme = section.getAttribute("data-theme");
+					setDarkMode(theme === "dark");
+					break;
+				}
+			}
 		};
 
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
+		container.addEventListener("scroll", handleScroll);
+		handleScroll(); // run once on mount
+
+		return () => container.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	// Body scroll lock
+	// Lock body scroll when mobile menu open
 	useEffect(() => {
-		if (menuOpen) {
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "";
-		}
+		document.body.style.overflow = menuOpen ? "hidden" : "";
 	}, [menuOpen]);
-
-	// FINAL POSITION
-	const translateClass = !introDone
-		? "-translate-y-full"
-		: showNav
-			? "translate-y-0"
-			: "-translate-y-full";
 
 	return (
 		<>
 			<nav
 				className={`
-				fixed top-0 left-0 right-0 z-50 text-white
-				transform transition-transform duration-900
-				ease-[cubic-bezier(0.22,1,0.36,1)]
-				${translateClass}
-				${scrolled ? "bg-black/95 backdrop-blur" : "bg-transparent"}
-				py-4 md:py-0
+				fixed top-0 left-0 right-0 z-50
+				transition-all duration-500 ease-in-out
+				${showNav ? "translate-y-0" : "-translate-y-full"}
+				${darkMode ? "text-white" : "text-black bg-white/90 backdrop-blur-md"}
 			`}
 			>
-				<div className="flex items-center px-8 py-4 md:h-16">
-					{/* Left desktop menu */}
+				<div className="flex items-center px-8 h-16">
+					{/* LEFT LINKS */}
 					<div className="hidden md:flex">
-						<ul className="flex gap-4 text-xs font-semibold">
-							<li>
-								<a href="#home">Home</a>
-							</li>
+						<ul className="flex gap-6 text-xs uppercase tracking-widest font-semibold">
 							<li>
 								<a href="#about">About</a>
 							</li>
 							<li>
-								<a href="#runs">Runs</a>
+								<a href="#schedule">Schedule</a>
 							</li>
 							<li>
-								<a href="#community">Community</a>
+								<a href="#benefits">Why Join</a>
+							</li>
+							<li>
+								<a href="#faq">FAQ</a>
 							</li>
 						</ul>
 					</div>
 
-					{/* Center logo */}
+					{/* CENTER LOGO */}
 					<a
-						className="absolute md:left-1/2 md:-translate-x-1/2"
+						className="absolute left-1/2 -translate-x-1/2"
 						href="#home"
 					>
 						<img
 							src={logo}
-							className="h-10 md:h-14 object-contain"
+							className="h-10 md:h-12 object-contain"
+							alt="Mile 365 Logo"
 						/>
 					</a>
 
-					{/* Right menu icon */}
+					{/* RIGHT CTA */}
+					<div className="ml-auto hidden md:flex items-center">
+						<Link
+							to="/join"
+							className="px-5 py-2 text-xs uppercase tracking-widest border"
+						>
+							Join
+						</Link>
+					</div>
+
+					{/* MOBILE ICON */}
 					<div
-						className="ml-auto md:hidden relative z-1000"
+						className="ml-auto md:hidden relative z-50"
 						onClick={() => setMenuOpen((prev) => !prev)}
 					>
 						{menuOpen ? <TbX size={26} /> : <TbMenu size={26} />}
@@ -106,7 +119,6 @@ export default function Navbar() {
 				</div>
 			</nav>
 
-			{/* FULLSCREEN MOBILE MENU */}
 			<MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 		</>
 	);
