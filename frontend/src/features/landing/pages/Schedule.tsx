@@ -22,7 +22,7 @@ export default function Schedule() {
 	return (
 		<motion.section
 			id="schedule"
-			className="min-h-[100svh] md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
+			className="min-h-svh md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
 			data-theme="light"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}

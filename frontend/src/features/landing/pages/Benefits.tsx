@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Particles from "../../../components/imports/Particles";
 
 const benefits = [
 	{
@@ -31,14 +32,23 @@ export default function Benefits() {
 	return (
 		<motion.section
 			id="benefits"
-			className="min-h-[100svh] md:h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start"
+			className="relative min-h-svh md:h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start overflow-hidden"
 			data-theme="dark"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
 			viewport={{ once: true }}
 			transition={{ duration: 0.8 }}
 		>
-			<div className="max-w-6xl mx-auto w-full flex flex-col justify-center">
+			{/* PARTICLES BACKGROUND */}
+			<div className="absolute inset-0 z-0">
+				<Particles />
+			</div>
+
+			{/* DARK OVERLAY FOR DEPTH */}
+			<div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/80 to-black z-10" />
+
+			{/* CONTENT */}
+			<div className="relative z-20 max-w-6xl mx-auto w-full flex flex-col justify-center">
 				{/* Header */}
 				<div className="mb-10 md:mb-20">
 					<p className="text-xs md:text-sm uppercase tracking-[0.3em] text-neutral-500">

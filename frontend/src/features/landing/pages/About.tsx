@@ -4,7 +4,7 @@ export default function About() {
 	return (
 		<motion.section
 			id="about"
-			className="min-h-[100svh] md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
+			className="min-h-svh md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
 			initial={{ opacity: 0, y: 40 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true }}
@@ -43,7 +43,7 @@ export default function About() {
 				</div>
 
 				{/* RIGHT VISUAL PLACEHOLDER */}
-				<div className="relative h-64 md:h-[500px] rounded-2xl overflow-hidden bg-neutral-200 shadow-sm">
+				<div className="relative h-64 md:h-125 rounded-2xl overflow-hidden bg-neutral-200 shadow-sm">
 					<div className="absolute inset-0 flex items-center justify-center text-neutral-400 text-xs uppercase tracking-widest">
 						Group Run Image
 					</div>

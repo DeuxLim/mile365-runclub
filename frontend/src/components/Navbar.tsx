@@ -64,11 +64,6 @@ export default function Navbar() {
 	   SECTION THEME DETECTION (Landing Only)
 	========================= */
 	useEffect(() => {
-		if (!isLandingPage) {
-			setIsLightSection(true);
-			return;
-		}
-
 		const container = document.getElementById("scroll-container");
 		if (!container) return;
 

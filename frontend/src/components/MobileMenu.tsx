@@ -36,7 +36,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 	return createPortal(
 		<div
 			className={`
-				fixed inset-0 z-[999] 
+				fixed inset-0 z-999
 				bg-black text-white
 				transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
 				${open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"}
