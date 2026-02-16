@@ -69,7 +69,7 @@ export default function FloatingMusic() {
 				onClick={toggleMusic}
 				className="
                 fixed left-4 bottom-6 z-50
-                w-12 h-12 rounded-full
+                size-8 rounded-full
                 bg-black text-white
                 flex items-center justify-center
                 shadow-lg
@@ -78,9 +78,9 @@ export default function FloatingMusic() {
                 "
 			>
 				{playing ? (
-					<FaVolumeUp size={18} />
+					<FaVolumeUp size={12} />
 				) : (
-					<FaVolumeMute size={18} />
+					<FaVolumeMute size={12} />
 				)}
 			</button>
 		</>
