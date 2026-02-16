@@ -1,3 +1,4 @@
+import FloatingMusic from "../../../components/LandingMusic";
 import About from "./About";
 import Benefits from "./Benefits";
 import FAQ from "./Faq";
@@ -23,6 +24,7 @@ export default function LandingPage() {
 			<SocialProof />
 			<FAQ />
 			<FinalCTA />
+			<FloatingMusic />
 		</div>
 	);
 }
