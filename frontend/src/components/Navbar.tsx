@@ -8,6 +8,7 @@ import MobileMenu from "./MobileMenu";
 export default function Navbar() {
 	const location = useLocation();
 	const isLandingPage = location.pathname === "/";
+	const isJoinPage = location.pathname === "/join";
 
 	const [showNav, setShowNav] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -161,17 +162,19 @@ export default function Navbar() {
 					</a>
 
 					{/* RIGHT CTA */}
-					<div className="ml-auto hidden md:flex items-center">
-						<Link
-							to="/join"
-							className={`
+					{!isJoinPage && (
+						<div className="ml-auto hidden md:flex items-center">
+							<Link
+								to="/join"
+								className={`
 								px-5 py-2 text-xs uppercase tracking-widest border transition-all duration-300
 								${buttonStyle}
-							`}
-						>
-							Join
-						</Link>
-					</div>
+								`}
+							>
+								Join
+							</Link>
+						</div>
+					)}
 
 					{/* MOBILE ICON */}
 					<div
