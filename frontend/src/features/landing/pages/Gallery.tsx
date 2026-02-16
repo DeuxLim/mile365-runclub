@@ -6,7 +6,7 @@ export default function Gallery() {
 			id="gallery"
 			data-theme="dark"
 			className="
-				min-h-screen bg-black text-white snap-start
+				min-h-screen bg-black text-white
 				flex flex-col justify-center lg:justify-start
 				px-5 sm:px-8 md:px-16 lg:px-24
 				py-16 md:py-20 lg:py-28 xl:py-32

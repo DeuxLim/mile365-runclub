@@ -24,7 +24,7 @@ export default function Schedule() {
 			id="schedule"
 			data-theme="light"
 			className="
-				min-h-screen bg-white text-black snap-start
+				min-h-screen bg-white text-black
 				flex flex-col justify-center lg:justify-start
 				px-5 sm:px-8 md:px-16 lg:px-24
 				py-16 md:py-20 lg:py-28 xl:py-32

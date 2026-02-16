@@ -12,7 +12,7 @@ import Target from "./Target";
 export default function LandingPage() {
 	return (
 		<div
-			className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth"
+			className="h-screen overflow-y-scroll snap-y snap-proximity scroll-smooth"
 			id="scroll-container"
 		>
 			<HeroSection />
