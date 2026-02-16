@@ -94,7 +94,7 @@
 
 /* App Styles Start */
 html {
-	scroll-behavior: auto;
+	scroll-behavior: smooth;
 }
 
 body {
