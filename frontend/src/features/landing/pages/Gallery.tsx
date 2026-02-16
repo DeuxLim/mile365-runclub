@@ -5,34 +5,37 @@ export default function Gallery() {
 		<motion.section
 			id="gallery"
 			data-theme="dark"
-			className="h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start"
+			className="
+				min-h-screen bg-black text-white snap-start
+				flex flex-col justify-center lg:justify-start
+				px-5 sm:px-8 md:px-16 lg:px-24
+				py-16 md:py-20 lg:py-28 xl:py-32
+			"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ amount : 0.5 }}
-			transition={{ duration: 0.8 }}
+			viewport={{ amount: 0.3, once: true }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
 		>
-			<div className="max-w-6xl mx-auto w-full h-full flex flex-col justify-center">
+			<div className="max-w-6xl mx-auto w-full flex flex-col">
 				{/* Header */}
-				<div className="mb-12">
-					<p className="text-sm uppercase tracking-[0.3em] text-neutral-500">
+				<div className="mb-10 md:mb-12">
+					<p className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.25em] md:tracking-[0.3em] text-neutral-500">
 						In Motion
 					</p>
 
-					<h2 className="text-4xl md:text-6xl font-heading tracking-tight mt-4">
+					<h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading tracking-tight mt-4 max-w-xl">
 						MILE 365 Community
 					</h2>
 				</div>
 
-				{/* Skeleton Grid */}
-				<div className="grid grid-cols-3 gap-6 h-[65%]">
-					{/* Large Placeholder */}
-					<div className="col-span-2 row-span-2 rounded-xl bg-neutral-800 animate-pulse" />
+				{/* Grid */}
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+					<div className="sm:col-span-2 md:row-span-2 rounded-xl bg-neutral-800 animate-pulse aspect-[4/3] md:aspect-auto md:h-full" />
 
-					{/* Small Placeholders */}
-					<div className="rounded-xl bg-neutral-700 animate-pulse" />
-					<div className="rounded-xl bg-neutral-700 animate-pulse" />
-					<div className="rounded-xl bg-neutral-700 animate-pulse" />
-					<div className="rounded-xl bg-neutral-700 animate-pulse" />
+					<div className="rounded-xl bg-neutral-700 animate-pulse aspect-[4/3]" />
+					<div className="rounded-xl bg-neutral-700 animate-pulse aspect-[4/3]" />
+					<div className="rounded-xl bg-neutral-700 animate-pulse aspect-[4/3]" />
+					<div className="rounded-xl bg-neutral-700 animate-pulse aspect-[4/3]" />
 				</div>
 			</div>
 		</motion.section>

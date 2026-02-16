@@ -16,27 +16,40 @@ const links = [
 ];
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
-	// Lock scroll
+	// iOS-safe scroll lock (no UI change)
 	useEffect(() => {
-		document.body.style.overflow = open ? "hidden" : "";
+		if (!open) return;
+
+		const scrollY = window.scrollY;
+		document.body.style.position = "fixed";
+		document.body.style.top = `-${scrollY}px`;
+		document.body.style.width = "100%";
+
 		return () => {
-			document.body.style.overflow = "";
+			const y = document.body.style.top;
+			document.body.style.position = "";
+			document.body.style.top = "";
+			document.body.style.width = "";
+			window.scrollTo(0, parseInt(y || "0") * -1);
 		};
 	}, [open]);
 
-	// Escape key
+	// Escape key only when open
 	useEffect(() => {
+		if (!open) return;
+
 		const handler = (e: KeyboardEvent) => {
 			if (e.key === "Escape") onClose();
 		};
+
 		window.addEventListener("keydown", handler);
 		return () => window.removeEventListener("keydown", handler);
-	}, [onClose]);
+	}, [open, onClose]);
 
 	return createPortal(
 		<div
 			className={`
-				fixed inset-0 z-999
+				fixed inset-0 z-[100]
 				bg-black text-white
 				transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
 				${open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"}
@@ -45,7 +58,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 			{/* Close Button */}
 			<button
 				onClick={onClose}
-				className="absolute top-6 right-6"
+				className="absolute top-6 right-6 pt-safe pr-safe"
 				aria-label="Close menu"
 			>
 				<TbX size={28} />
@@ -69,10 +82,8 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 					</a>
 				))}
 
-				{/* Divider */}
 				<div className="w-12 h-px bg-white/20 my-4" />
 
-				{/* CTA */}
 				<a
 					href="#join"
 					onClick={onClose}

@@ -20,20 +20,20 @@ export default function SocialProof() {
 		<motion.section
 			id="social-proof"
 			data-theme="light"
-			className="min-h-svh md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
+			className="min-h-screen bg-white text-black flex items-center snap-start px-5 sm:px-8 md:px-16 lg:px-24 py-16 md:py-0"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ amount: 0.5 }}
-			transition={{ duration: 0.8 }}
+			viewport={{ amount: 0.3, once: true }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
 		>
 			<div className="max-w-6xl mx-auto w-full flex flex-col justify-center">
 				{/* Header */}
-				<div className="mb-20">
-					<p className="text-sm uppercase tracking-[0.3em] text-neutral-500">
+				<div className="mb-12 md:mb-20">
+					<p className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.25em] md:tracking-[0.3em] text-neutral-500">
 						Community
 					</p>
 
-					<h2 className="text-4xl md:text-6xl font-heading leading-tight tracking-tight mt-6">
+					<h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading leading-tight tracking-tight mt-4 md:mt-6 max-w-xl">
 						Real runners.
 						<br />
 						Real progress.
@@ -41,20 +41,20 @@ export default function SocialProof() {
 				</div>
 
 				{/* Testimonials */}
-				<div className="grid md:grid-cols-3 gap-16">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
 					{testimonials.map((item, i) => (
 						<motion.div
 							key={i}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ amount: 0.5 }}
-							transition={{ duration: 0.5, delay: i * 0.2 }}
-							className="space-y-6 border-l border-black/20 pl-6"
+							viewport={{ amount: 0.3, once: true }}
+							transition={{ duration: 0.45, delay: i * 0.12 }}
+							className="space-y-4 md:space-y-6 border-l border-black/20 pl-4 sm:pl-6"
 						>
-							<p className="text-xl leading-relaxed">
+							<p className="text-base sm:text-lg md:text-xl leading-relaxed">
 								“{item.quote}”
 							</p>
-							<p className="text-sm text-neutral-500">
+							<p className="text-xs sm:text-sm text-neutral-500">
 								— {item.name}
 							</p>
 						</motion.div>

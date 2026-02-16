@@ -1,51 +1,48 @@
 export default function JoinForm() {
 	return (
-		<form className="space-y-16">
-			{/* ============================= */}
+		<form className="space-y-14 md:space-y-16 max-w-4xl mx-auto">
 			{/* PERSONAL INFORMATION */}
-			{/* ============================= */}
-			<section>
-				<h3 className="text-xl font-semibold mb-6">
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">
 					Personal Information
 				</h3>
 
-				<div className="grid md:grid-cols-2 gap-6">
+				<div className="grid sm:grid-cols-2 gap-5 md:gap-6">
 					<input
 						name="first_name"
 						placeholder="First Name *"
-						className="border p-3 w-full"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full text-sm md:text-base"
 					/>
 					<input
 						name="last_name"
 						placeholder="Last Name *"
-						className="border p-3 w-full"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full text-sm md:text-base"
 					/>
 				</div>
 
-				<div className="mt-6">
-					<input
-						name="email"
-						type="email"
-						placeholder="Email *"
-						className="border p-3 w-full"
-					/>
-				</div>
+				<input
+					name="email"
+					type="email"
+					placeholder="Email *"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
+				/>
 
-				<div className="mt-6">
-					<input
-						name="phone"
-						placeholder="Phone"
-						className="border p-3 w-full"
-					/>
-				</div>
+				<input
+					name="phone"
+					placeholder="Phone"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
+				/>
 
-				<div className="grid md:grid-cols-2 gap-6 mt-6">
+				<div className="grid sm:grid-cols-2 gap-5 md:gap-6">
 					<input
 						name="birthdate"
 						type="date"
-						className="border p-3 w-full"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					/>
-					<select name="gender" className="border p-3 w-full">
+					<select
+						name="gender"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full bg-white"
+					>
 						<option value="">Gender</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
@@ -54,101 +51,71 @@ export default function JoinForm() {
 				</div>
 			</section>
 
-			{/* ============================= */}
 			{/* LOCATION */}
-			{/* ============================= */}
-			<section>
-				<h3 className="text-xl font-semibold mb-6">Location</h3>
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">Location</h3>
 
 				<input
 					name="country"
 					defaultValue="Philippines"
-					className="border p-3 w-full mb-6"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 
-				<div className="grid md:grid-cols-2 gap-6">
+				<div className="grid sm:grid-cols-2 gap-5 md:gap-6">
 					<input
 						name="province"
 						placeholder="Province"
-						className="border p-3 w-full"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					/>
 					<input
 						name="city"
 						placeholder="City"
-						className="border p-3 w-full"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					/>
 				</div>
 
-				<div className="mt-6">
-					<input
-						name="barangay"
-						placeholder="Barangay"
-						className="border p-3 w-full"
-					/>
-				</div>
+				<input
+					name="barangay"
+					placeholder="Barangay"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
+				/>
 			</section>
 
-			{/* ============================= */}
 			{/* TRAINING PROFILE */}
-			{/* ============================= */}
-			<section>
-				<h3 className="text-xl font-semibold mb-6">Training Profile</h3>
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">
+					Training Profile
+				</h3>
 
-				{/* Training Types (array) */}
-				<div className="mb-6">
+				<div>
 					<p className="text-sm font-medium mb-3">Training Types</p>
 
-					<div className="flex flex-wrap gap-4 text-sm">
-						<label className="flex items-center gap-2">
-							<input
-								type="checkbox"
-								name="training_types[]"
-								value="running"
-							/>
-							Running
-						</label>
-
-						<label className="flex items-center gap-2">
-							<input
-								type="checkbox"
-								name="training_types[]"
-								value="gym"
-							/>
-							Gym
-						</label>
-
-						<label className="flex items-center gap-2">
-							<input
-								type="checkbox"
-								name="training_types[]"
-								value="hybrid"
-							/>
-							Hybrid
-						</label>
-
-						<label className="flex items-center gap-2">
-							<input
-								type="checkbox"
-								name="training_types[]"
-								value="cycling"
-							/>
-							Cycling
-						</label>
-
-						<label className="flex items-center gap-2">
-							<input
-								type="checkbox"
-								name="training_types[]"
-								value="triathlon"
-							/>
-							Triathlon
-						</label>
+					<div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+						{[
+							"running",
+							"gym",
+							"hybrid",
+							"cycling",
+							"triathlon",
+						].map((type) => (
+							<label
+								key={type}
+								className="flex items-center gap-2"
+							>
+								<input
+									type="checkbox"
+									name="training_types[]"
+									value={type}
+								/>
+								<span className="capitalize">{type}</span>
+							</label>
+						))}
 					</div>
 				</div>
 
 				<select
 					name="experience_level"
-					className="border p-3 w-full mb-6"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full bg-white"
 				>
 					<option value="">Experience Level</option>
 					<option value="beginner">Beginner</option>
@@ -156,99 +123,100 @@ export default function JoinForm() {
 					<option value="advanced">Advanced</option>
 				</select>
 
-				<div className="grid md:grid-cols-2 gap-6 mb-6">
+				<div className="grid sm:grid-cols-2 gap-5 md:gap-6">
 					<input
 						name="years_running"
 						type="number"
 						placeholder="Years Running"
-						className="border p-3 w-full"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					/>
 					<input
 						name="weekly_distance_km"
 						type="number"
 						placeholder="Weekly Distance (km)"
-						className="border p-3 w-full"
+						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					/>
 				</div>
 
 				<input
 					name="average_run_pace"
 					placeholder="Average Pace (e.g. 5:30/km)"
-					className="border p-3 w-full mb-6"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 
 				<input
 					name="preferred_run_time"
-					placeholder="Preferred Run Time (morning, evening, weekends)"
-					className="border p-3 w-full mb-6"
+					placeholder="Preferred Run Time"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 
 				<textarea
 					name="goals"
 					rows={3}
-					placeholder="Goals (marathon, fitness, weight loss, etc.)"
-					className="border p-3 w-full"
+					placeholder="Goals"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 			</section>
 
-			{/* ============================= */}
-			{/* HEALTH & SAFETY */}
-			{/* ============================= */}
-			<section>
-				<h3 className="text-xl font-semibold mb-6">Health & Safety</h3>
+			{/* HEALTH */}
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">
+					Health & Safety
+				</h3>
 
 				<input
 					name="emergency_contact_name"
 					placeholder="Emergency Contact Name"
-					className="border p-3 w-full mb-6"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 				<input
 					name="emergency_contact_phone"
 					placeholder="Emergency Contact Phone"
-					className="border p-3 w-full mb-6"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 
 				<textarea
 					name="medical_conditions"
 					rows={3}
-					placeholder="Medical Conditions (if any)"
-					className="border p-3 w-full"
+					placeholder="Medical Conditions"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 			</section>
 
-			{/* ============================= */}
 			{/* COMMUNITY */}
-			{/* ============================= */}
-			<section>
-				<h3 className="text-xl font-semibold mb-6">Community</h3>
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">Community</h3>
 
 				<input
 					name="how_did_you_hear"
-					placeholder="How did you hear about MILE 365?"
-					className="border p-3 w-full mb-6"
+					placeholder="How did you hear about us?"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 
 				<textarea
 					name="motivation"
 					rows={3}
 					placeholder="Why do you want to join?"
-					className="border p-3 w-full"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 			</section>
 
-			{/* ============================= */}
 			{/* WAIVER */}
-			{/* ============================= */}
 			<section>
-				<label className="flex items-center gap-3 text-sm">
-					<input type="checkbox" name="agreed_to_rules" value="1" />I
-					agree to club rules and waiver *
+				<label className="flex items-start gap-3 text-sm">
+					<input
+						type="checkbox"
+						name="agreed_to_rules"
+						value="1"
+						className="mt-1"
+					/>
+					I agree to club rules and waiver *
 				</label>
 			</section>
 
 			<button
 				type="submit"
-				className="bg-black text-white py-4 px-8 uppercase tracking-widest text-xs"
+				className="w-full md:w-auto bg-black text-white py-4 px-10 uppercase tracking-widest text-xs hover:bg-neutral-800 transition"
 			>
 				Submit Application
 			</button>

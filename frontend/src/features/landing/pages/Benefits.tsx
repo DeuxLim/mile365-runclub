@@ -32,50 +32,50 @@ export default function Benefits() {
 	return (
 		<motion.section
 			id="benefits"
-			className="relative min-h-svh md:h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start overflow-hidden"
 			data-theme="dark"
+			className="relative min-h-screen bg-black text-white flex items-center snap-start overflow-hidden px-5 sm:px-8 md:px-16 lg:px-24 py-16 md:py-0"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ amount: 0.5 }}
-			transition={{ duration: 0.8 }}
+			viewport={{ amount: 0.3, once: true }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
 		>
 			{/* PARTICLES BACKGROUND */}
-			<div className="absolute inset-0 z-0">
+			<div className="absolute inset-0 z-0 opacity-60 md:opacity-100">
 				<Particles />
 			</div>
 
-			{/* DARK OVERLAY FOR DEPTH */}
+			{/* DARK OVERLAY */}
 			<div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/80 to-black z-10" />
 
 			{/* CONTENT */}
 			<div className="relative z-20 max-w-6xl mx-auto w-full flex flex-col justify-center">
 				{/* Header */}
-				<div className="mb-10 md:mb-20">
-					<p className="text-xs md:text-sm uppercase tracking-[0.3em] text-neutral-500">
+				<div className="mb-12 md:mb-20">
+					<p className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.25em] md:tracking-[0.3em] text-neutral-500">
 						Why Join
 					</p>
 
-					<h2 className="text-3xl md:text-6xl font-heading leading-tight tracking-tight mt-4 md:mt-6">
+					<h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading leading-tight tracking-tight mt-4 md:mt-6 max-w-xl">
 						More than just
 						<br />a weekly run.
 					</h2>
 				</div>
 
 				{/* Benefits Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-20 gap-y-8 md:gap-y-12">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-20 gap-y-8 md:gap-y-12">
 					{benefits.map((benefit, i) => (
 						<motion.div
 							key={benefit.title}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ amount: 0.5 }}
-							transition={{ duration: 0.5, delay: i * 0.1 }}
-							className="space-y-3 border-l border-white/20 pl-6 md:pl-8"
+							viewport={{ amount: 0.3, once: true }}
+							transition={{ duration: 0.45, delay: i * 0.08 }}
+							className="space-y-2 sm:space-y-3 border-l border-white/20 pl-4 sm:pl-6 md:pl-8"
 						>
-							<h3 className="text-xl md:text-2xl font-semibold">
+							<h3 className="text-lg sm:text-xl md:text-2xl font-semibold">
 								{benefit.title}
 							</h3>
-							<p className="text-neutral-400 text-sm md:text-base leading-relaxed">
+							<p className="text-neutral-400 text-sm sm:text-base leading-relaxed max-w-md">
 								{benefit.desc}
 							</p>
 						</motion.div>

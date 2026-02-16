@@ -12,20 +12,20 @@ export default function Target() {
 		<motion.section
 			id="target"
 			data-theme="dark"
-			className="relative h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start overflow-hidden"
+			className="relative min-h-screen bg-black text-white flex items-center snap-start overflow-hidden px-5 sm:px-8 md:px-16 lg:px-24 py-16 md:py-0"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ amount: 0.5 }}
-			transition={{ duration: 0.8 }}
+			viewport={{ amount: 0.3, once: true }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
 		>
-			<div className="relative max-w-6xl mx-auto w-full flex flex-col justify-center space-y-16">
+			<div className="relative max-w-6xl mx-auto w-full flex flex-col justify-center space-y-12 md:space-y-16">
 				{/* Header */}
-				<div className="space-y-6">
-					<p className="text-sm uppercase tracking-[0.3em] text-neutral-500">
+				<div className="space-y-5 md:space-y-6">
+					<p className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.25em] md:tracking-[0.3em] text-neutral-500">
 						Who Can Join
 					</p>
 
-					<h2 className="text-5xl md:text-7xl font-heading leading-[1.05] tracking-tight">
+					<h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-heading leading-[1.05] tracking-tight max-w-2xl">
 						If you’re willing
 						<br />
 						to show up —
@@ -33,22 +33,22 @@ export default function Target() {
 						you belong here.
 					</h2>
 
-					<p className="text-neutral-400 text-lg max-w-xl">
+					<p className="text-neutral-400 text-sm sm:text-base md:text-lg max-w-lg leading-relaxed">
 						No membership fee. No ego. Just discipline, consistency,
 						and support.
 					</p>
 				</div>
 
 				{/* Levels */}
-				<div className="grid md:grid-cols-2 gap-8 text-xl md:text-2xl text-neutral-300">
+				<div className="grid sm:grid-cols-2 gap-6 md:gap-8 text-base sm:text-lg md:text-2xl text-neutral-300">
 					{levels.map((level, i) => (
 						<motion.div
 							key={level}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ amount: 0.5 }}
-							transition={{ duration: 0.5, delay: i * 0.15 }}
-							className="border-l border-white/20 pl-6"
+							viewport={{ amount: 0.3, once: true }}
+							transition={{ duration: 0.45, delay: i * 0.12 }}
+							className="border-l border-white/20 pl-5 md:pl-6"
 						>
 							{level}
 						</motion.div>
