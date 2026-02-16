@@ -15,7 +15,7 @@ export default function Target() {
 			className="relative h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start overflow-hidden"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
+			viewport={{ amount: 0.5 }}
 			transition={{ duration: 0.8 }}
 		>
 			<div className="relative max-w-6xl mx-auto w-full flex flex-col justify-center space-y-16">
@@ -46,7 +46,7 @@ export default function Target() {
 							key={level}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ amount: 0.5 }}
 							transition={{ duration: 0.5, delay: i * 0.15 }}
 							className="border-l border-white/20 pl-6"
 						>

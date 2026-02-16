@@ -8,7 +8,7 @@ export default function Gallery() {
 			className="h-screen bg-black text-white flex items-center px-6 md:px-24 snap-start"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
+			viewport={{ amount : 0.5 }}
 			transition={{ duration: 0.8 }}
 		>
 			<div className="max-w-6xl mx-auto w-full h-full flex flex-col justify-center">

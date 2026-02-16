@@ -38,7 +38,7 @@ export default function FAQ() {
 			data-theme="dark"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
+			viewport={{ amount: 0.5 }}
 			transition={{ duration: 0.8 }}
 		>
 			<div className="max-w-4xl mx-auto w-full flex flex-col justify-center">

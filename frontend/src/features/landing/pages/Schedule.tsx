@@ -26,7 +26,7 @@ export default function Schedule() {
 			data-theme="light"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
+			viewport={{ amount : 0.5 }}
 			transition={{ duration: 0.8 }}
 		>
 			<div className="max-w-6xl mx-auto w-full flex flex-col justify-center">
@@ -50,7 +50,7 @@ export default function Schedule() {
 							key={session.day}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ amount : 0.5 }}
 							transition={{ duration: 0.5, delay: i * 0.15 }}
 							className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-6 md:gap-12"
 						>

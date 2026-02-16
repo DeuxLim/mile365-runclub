@@ -36,7 +36,7 @@ export default function Benefits() {
 			data-theme="dark"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
+			viewport={{ amount: 0.5 }}
 			transition={{ duration: 0.8 }}
 		>
 			{/* PARTICLES BACKGROUND */}
@@ -68,7 +68,7 @@ export default function Benefits() {
 							key={benefit.title}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ amount: 0.5 }}
 							transition={{ duration: 0.5, delay: i * 0.1 }}
 							className="space-y-3 border-l border-white/20 pl-6 md:pl-8"
 						>

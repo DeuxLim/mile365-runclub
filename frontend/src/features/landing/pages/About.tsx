@@ -2,16 +2,18 @@ import { motion } from "framer-motion";
 
 export default function About() {
 	return (
-		<motion.section
+		<section
 			id="about"
 			className="min-h-svh md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
-			initial={{ opacity: 0, y: 40 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true }}
-			transition={{ duration: 0.8 }}
 			data-theme="light"
 		>
-			<div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+			<motion.div
+				initial={{ opacity: 0, y: 40 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ amount: 0.5 }}
+				transition={{ duration: 0.8 }}
+				className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 md:gap-24 items-center"
+			>
 				{/* LEFT CONTENT */}
 				<div className="space-y-8">
 					<p className="text-xs md:text-sm uppercase tracking-[0.3em] text-neutral-500">
@@ -48,7 +50,7 @@ export default function About() {
 						Group Run Image
 					</div>
 				</div>
-			</div>
-		</motion.section>
+			</motion.div>
+		</section>
 	);
 }

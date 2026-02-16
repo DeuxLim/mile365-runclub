@@ -23,7 +23,7 @@ export default function SocialProof() {
 			className="min-h-svh md:h-screen bg-white text-black flex items-center px-6 md:px-24 snap-start"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
+			viewport={{ amount: 0.5 }}
 			transition={{ duration: 0.8 }}
 		>
 			<div className="max-w-6xl mx-auto w-full flex flex-col justify-center">
@@ -47,7 +47,7 @@ export default function SocialProof() {
 							key={i}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ amount: 0.5 }}
 							transition={{ duration: 0.5, delay: i * 0.2 }}
 							className="space-y-6 border-l border-black/20 pl-6"
 						>
