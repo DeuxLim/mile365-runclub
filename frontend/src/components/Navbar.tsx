@@ -7,7 +7,6 @@ import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
 	const location = useLocation();
-	const isLandingPage = location.pathname === "/";
 	const isJoinPage = location.pathname === "/join";
 
 	const [showNav, setShowNav] = useState(true);
@@ -18,7 +17,6 @@ export default function Navbar() {
 
 	/* =========================
 	   SCROLL SHOW/HIDE NAV
-	   (viewport scroll only)
 	========================= */
 	useEffect(() => {
 		const handleScroll = () => {
@@ -52,12 +50,11 @@ export default function Navbar() {
 	}, []);
 
 	/* =========================
-	   SECTION THEME DETECTION
-	   (viewport-based observer)
+	   GLOBAL THEME DETECTION
+	   Works for landing AND inner pages
+	   Requires data-theme on page roots
 	========================= */
 	useEffect(() => {
-		if (!isLandingPage) return;
-
 		const sections = document.querySelectorAll("[data-theme]");
 		if (!sections.length) return;
 
@@ -71,7 +68,7 @@ export default function Navbar() {
 				});
 			},
 			{
-				root: null, // viewport
+				root: null,
 				threshold: 0,
 				rootMargin: "-1px 0px -99% 0px",
 			},
@@ -80,7 +77,7 @@ export default function Navbar() {
 		sections.forEach((section) => observer.observe(section));
 
 		return () => observer.disconnect();
-	}, [isLandingPage]);
+	}, [location.pathname]);
 
 	/* =========================
 	   LOCK BODY SCROLL (Mobile Menu)
@@ -92,30 +89,19 @@ export default function Navbar() {
 	/* =========================
 	   COLOR + LOGO LOGIC
 	========================= */
-	const textColor = isLandingPage
-		? isLightSection
-			? "text-black"
-			: "text-white"
-		: "text-black";
+	const textColor = isLightSection ? "text-black" : "text-white";
 
-	const buttonStyle = isLandingPage
-		? isLightSection
-			? "border-black hover:bg-black hover:text-white"
-			: "border-white hover:bg-white hover:text-black"
-		: "border-black hover:bg-black hover:text-white";
+	const buttonStyle = isLightSection
+		? "border-black hover:bg-black hover:text-white"
+		: "border-white hover:bg-white hover:text-black";
 
-	const logoSrc = isLandingPage
-		? isLightSection
-			? darkLogo
-			: lightLogo
-		: darkLogo;
+	const logoSrc = isLightSection ? darkLogo : lightLogo;
 
 	return (
 		<>
 			<nav
 				className={`
 				fixed top-0 left-0 right-0 z-50
-				bg-transparent
 				transition-all duration-500 ease-in-out
 				${showNav ? "translate-y-0" : "-translate-y-full"}
 				${textColor}
@@ -137,9 +123,6 @@ export default function Navbar() {
 							<li>
 								<a href="/#faq">FAQ</a>
 							</li>
-							<li>
-								<a href="/#gallery">Club Gallery</a>
-							</li>
 						</ul>
 					</div>
 
@@ -152,20 +135,26 @@ export default function Navbar() {
 						/>
 					</a>
 
-					{/* RIGHT CTA */}
-					{!isJoinPage && (
-						<div className="ml-auto hidden md:flex items-center">
-							<Link
-								to="/join"
+					{/* RIGHT SIDE */}
+					<div className="ml-auto hidden md:flex items-center gap-8">
+						<ul className="flex gap-6 text-xs uppercase tracking-widest font-semibold">
+							<li>
+								<a href="/#gallery">Club Gallery</a>
+							</li>
+						</ul>
+
+						{!isJoinPage && (
+							<a
+								href="/join"
 								className={`
 								px-5 py-2 text-xs uppercase tracking-widest border transition-all duration-300
 								${buttonStyle}
 								`}
 							>
 								Join
-							</Link>
-						</div>
-					)}
+							</a>
+						)}
+					</div>
 
 					{/* MOBILE ICON */}
 					<div
