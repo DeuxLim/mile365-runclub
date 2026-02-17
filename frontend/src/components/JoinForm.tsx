@@ -29,7 +29,7 @@ export default function JoinForm() {
 
 				<input
 					name="phone"
-					placeholder="Phone"
+					placeholder="Phone Number *"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 
@@ -64,12 +64,12 @@ export default function JoinForm() {
 				<div className="grid sm:grid-cols-2 gap-5 md:gap-6">
 					<input
 						name="province"
-						placeholder="Province"
+						placeholder="Province (Bulacan preferred) *"
 						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					/>
 					<input
 						name="city"
-						placeholder="City"
+						placeholder="City / Municipality *"
 						className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					/>
 				</div>
@@ -79,6 +79,16 @@ export default function JoinForm() {
 					placeholder="Barangay"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
+
+				<label className="flex items-start gap-3 text-sm">
+					<input
+						type="checkbox"
+						name="location_confirmation"
+						className="mt-1"
+					/>
+					I confirm I can regularly attend sessions around Malolos /
+					Bulacan
+				</label>
 			</section>
 
 			{/* TRAINING PROFILE */}
@@ -153,8 +163,91 @@ export default function JoinForm() {
 				<textarea
 					name="goals"
 					rows={3}
-					placeholder="Goals"
+					placeholder="Running goals (fitness, race prep, social, etc.)"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
+				/>
+			</section>
+
+			{/* SOCIAL CONNECTION */}
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">
+					Community Platforms
+				</h3>
+
+				<p className="text-sm text-neutral-600">
+					Facebook Group and Community Chat are required so we can
+					contact you and add you to the main club group after
+					approval.
+				</p>
+
+				<div className="grid sm:grid-cols-2 gap-3 text-sm">
+					<label className="flex items-center gap-2">
+						<input
+							type="checkbox"
+							name="fb_group_joined"
+							required
+						/>
+						Facebook Group (Required)
+					</label>
+
+					<label className="flex items-center gap-2">
+						<input
+							type="checkbox"
+							name="community_chat_joined"
+							required
+						/>
+						Community Chat (Required)
+					</label>
+
+					<label className="flex items-center gap-2">
+						<input
+							type="checkbox"
+							name="platforms_joined[]"
+							value="Facebook Page"
+						/>
+						Facebook Page
+					</label>
+
+					<label className="flex items-center gap-2">
+						<input
+							type="checkbox"
+							name="platforms_joined[]"
+							value="Instagram"
+						/>
+						Instagram
+					</label>
+
+					<label className="flex items-center gap-2">
+						<input
+							type="checkbox"
+							name="platforms_joined[]"
+							value="TikTok"
+						/>
+						TikTok
+					</label>
+
+					<label className="flex items-center gap-2">
+						<input
+							type="checkbox"
+							name="platforms_joined[]"
+							value="Strava Club"
+						/>
+						Strava Club
+					</label>
+				</div>
+
+				<input
+					name="facebook_profile_name"
+					placeholder="Facebook profile name used to join the group *"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
+					required
+				/>
+
+				<input
+					name="messenger_name"
+					placeholder="Messenger display name *"
+					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
+					required
 				/>
 			</section>
 
@@ -166,21 +259,67 @@ export default function JoinForm() {
 
 				<input
 					name="emergency_contact_name"
-					placeholder="Emergency Contact Name"
+					placeholder="Emergency Contact Name *"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 				<input
 					name="emergency_contact_phone"
-					placeholder="Emergency Contact Phone"
+					placeholder="Emergency Contact Phone *"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 
 				<textarea
 					name="medical_conditions"
 					rows={3}
-					placeholder="Medical Conditions"
+					placeholder="Medical conditions or injuries (if any)"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
+
+				<label className="flex items-start gap-3 text-sm">
+					<input
+						type="checkbox"
+						name="fitness_acknowledgment"
+						className="mt-1"
+					/>
+					I confirm I am physically capable of participating in
+					running sessions
+				</label>
+			</section>
+
+			{/* MEMBERSHIP EXPECTATIONS */}
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">
+					Membership Expectations
+				</h3>
+
+				<label className="flex items-start gap-3 text-sm">
+					<input
+						type="checkbox"
+						name="attendance_commitment"
+						className="mt-1"
+					/>
+					I understand I must attend at least 2 sessions before
+					official membership
+				</label>
+
+				<label className="flex items-start gap-3 text-sm">
+					<input
+						type="checkbox"
+						name="activity_expectation"
+						className="mt-1"
+					/>
+					I understand active members are expected to attend sessions
+					regularly
+				</label>
+
+				<label className="flex items-start gap-3 text-sm">
+					<input
+						type="checkbox"
+						name="community_behavior"
+						className="mt-1"
+					/>
+					I agree to follow community rules and respect all members
+				</label>
 			</section>
 
 			{/* COMMUNITY */}
@@ -196,22 +335,95 @@ export default function JoinForm() {
 				<textarea
 					name="motivation"
 					rows={3}
-					placeholder="Why do you want to join?"
+					placeholder="Why do you want to join the run club?"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
 			</section>
 
-			{/* WAIVER */}
-			<section>
-				<label className="flex items-start gap-3 text-sm">
-					<input
-						type="checkbox"
-						name="agreed_to_rules"
-						value="1"
-						className="mt-1"
-					/>
-					I agree to club rules and waiver *
-				</label>
+			{/* WAIVER & TERMS */}
+			<section className="space-y-6">
+				<h3 className="text-lg md:text-xl font-semibold">
+					Waiver & Participation Agreement
+				</h3>
+
+				<p className="text-sm text-neutral-600 max-w-prose">
+					Please review and agree before submitting your application.
+				</p>
+
+				<div className="space-y-4">
+					<label className="flex items-start gap-3 text-sm leading-relaxed cursor-pointer">
+						<input
+							type="checkbox"
+							name="fitness_acknowledgment"
+							className="mt-1 h-4 w-4 shrink-0"
+							required
+						/>
+						<span className="flex-1">
+							I confirm that I am physically capable of
+							participating in running sessions and understand the
+							risks involved.
+						</span>
+					</label>
+
+					<label className="flex items-start gap-3 text-sm leading-relaxed cursor-pointer">
+						<input
+							type="checkbox"
+							name="safety_commitment"
+							className="mt-1 h-4 w-4 shrink-0"
+							required
+						/>
+						<span className="flex-1">
+							I agree to follow all safety instructions, session
+							guidelines, and community conduct standards.
+						</span>
+					</label>
+
+					<label className="flex items-start gap-3 text-sm leading-relaxed cursor-pointer">
+						<input
+							type="checkbox"
+							name="media_consent"
+							className="mt-1 h-4 w-4 shrink-0"
+						/>
+						<span className="flex-1">
+							I allow the club to capture and share photos/videos
+							for announcements and community features.
+						</span>
+					</label>
+
+					<label className="flex items-start gap-3 text-sm leading-relaxed cursor-pointer">
+						<input
+							type="checkbox"
+							name="agreed_to_rules"
+							value="1"
+							className="mt-1 h-4 w-4 shrink-0"
+							required
+						/>
+						<span className="flex-1">
+							I have read and agree to the{" "}
+							<a
+								href="/waiver-and-terms#waiver"
+								className="underline"
+							>
+								Liability Waiver
+							</a>
+							,{" "}
+							<a
+								href="/waiver-and-terms#safety"
+								className="underline"
+							>
+								Safety Policy
+							</a>
+							, and{" "}
+							<a
+								href="/waiver-and-terms#terms"
+								className="underline"
+							>
+								Participation Terms
+							</a>
+							.
+						</span>
+					</label>
+				</div>
 			</section>
 
 			<button
