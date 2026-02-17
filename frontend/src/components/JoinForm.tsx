@@ -1,7 +1,10 @@
 export default function JoinForm() {
 	return (
 		<form className="space-y-14 md:space-y-16 max-w-4xl mx-auto">
-			{/* PERSONAL INFORMATION */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* BASIC IDENTITY                                                       */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">
 					Personal Information
@@ -26,7 +29,6 @@ export default function JoinForm() {
 					placeholder="Email *"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
-
 				<input
 					name="phone"
 					placeholder="Phone Number *"
@@ -51,7 +53,10 @@ export default function JoinForm() {
 				</div>
 			</section>
 
-			{/* LOCATION */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* LOCATION                                                             */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">Location</h3>
 
@@ -91,7 +96,10 @@ export default function JoinForm() {
 				</label>
 			</section>
 
-			{/* TRAINING PROFILE */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* TRAINING PROFILE                                                     */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">
 					Training Profile
@@ -153,7 +161,6 @@ export default function JoinForm() {
 					placeholder="Average Pace (e.g. 5:30/km)"
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 				/>
-
 				<input
 					name="preferred_run_time"
 					placeholder="Preferred Run Time"
@@ -168,7 +175,10 @@ export default function JoinForm() {
 				/>
 			</section>
 
-			{/* SOCIAL CONNECTION */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* COMMUNITY PLATFORMS                                                  */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">
 					Community Platforms
@@ -242,7 +252,6 @@ export default function JoinForm() {
 					className="border border-neutral-300 focus:border-black focus:ring-1 focus:ring-black p-3 md:p-4 w-full"
 					required
 				/>
-
 				<input
 					name="messenger_name"
 					placeholder="Messenger display name *"
@@ -251,7 +260,10 @@ export default function JoinForm() {
 				/>
 			</section>
 
-			{/* HEALTH */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* HEALTH & SAFETY                                                      */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">
 					Health & Safety
@@ -286,7 +298,10 @@ export default function JoinForm() {
 				</label>
 			</section>
 
-			{/* MEMBERSHIP EXPECTATIONS */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* MEMBERSHIP EXPECTATIONS                                              */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">
 					Membership Expectations
@@ -322,7 +337,10 @@ export default function JoinForm() {
 				</label>
 			</section>
 
-			{/* COMMUNITY */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* COMMUNITY / CULTURE FIT                                              */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">Community</h3>
 
@@ -340,7 +358,10 @@ export default function JoinForm() {
 				/>
 			</section>
 
-			{/* WAIVER & TERMS */}
+
+			{/* -------------------------------------------------------------------- */}
+			{/* WAIVER / AGREEMENT                                                   */}
+			{/* -------------------------------------------------------------------- */}
 			<section className="space-y-6">
 				<h3 className="text-lg md:text-xl font-semibold">
 					Waiver & Participation Agreement
@@ -426,6 +447,10 @@ export default function JoinForm() {
 				</div>
 			</section>
 
+
+			{/* -------------------------------------------------------------------- */}
+			{/* SUBMIT                                                               */}
+			{/* -------------------------------------------------------------------- */}
 			<button
 				type="submit"
 				className="w-full md:w-auto bg-black text-white py-4 px-10 uppercase tracking-widest text-xs hover:bg-neutral-800 transition"
