@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, Link } from "react-router";
+import { useLocation } from "react-router";
 import lightLogo from "../assets/photos/365_logo_light.png";
 import darkLogo from "../assets/photos/365_logo_dark.png";
 import { TbMenu, TbX } from "react-icons/tb";
