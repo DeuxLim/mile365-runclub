@@ -95,6 +95,16 @@
 /* App Styles Start */
 html {
 	scroll-behavior: smooth;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+	display: none; /* Chrome/Safari */
+}
+
+#scroll-container {
+	-webkit-overflow-scrolling: touch;
 }
 
 body {

@@ -13,22 +13,16 @@ export default function Navbar() {
 	const [showNav, setShowNav] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [isLightSection, setIsLightSection] = useState(false);
+
 	const lastScrollY = useRef(0);
 
 	/* =========================
-	   SCROLL DETECTION (Works everywhere)
+	   SCROLL SHOW/HIDE NAV
+	   (viewport scroll only)
 	========================= */
 	useEffect(() => {
-		const getScrollElement = () =>
-			document.getElementById("scroll-container") || window;
-
-		const scrollElement = getScrollElement();
-
 		const handleScroll = () => {
-			const current =
-				scrollElement instanceof Window
-					? window.scrollY
-					: scrollElement.scrollTop;
+			const current = window.scrollY;
 
 			if (current > lastScrollY.current && current > 80) {
 				setShowNav(false);
@@ -39,22 +33,18 @@ export default function Navbar() {
 			lastScrollY.current = current;
 		};
 
-		scrollElement.addEventListener("scroll", handleScroll);
+		window.addEventListener("scroll", handleScroll);
 		handleScroll();
 
-		return () => {
-			scrollElement.removeEventListener("scroll", handleScroll);
-		};
-	}, [location.pathname]);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	/* =========================
 	   REVEAL WHEN CURSOR NEAR TOP
 	========================= */
 	useEffect(() => {
 		const handleMouseMove = (e: MouseEvent) => {
-			if (e.clientY <= 80) {
-				setShowNav(true);
-			}
+			if (e.clientY <= 80) setShowNav(true);
 		};
 
 		window.addEventListener("mousemove", handleMouseMove);
@@ -62,13 +52,14 @@ export default function Navbar() {
 	}, []);
 
 	/* =========================
-	   SECTION THEME DETECTION (Landing Only)
+	   SECTION THEME DETECTION
+	   (viewport-based observer)
 	========================= */
 	useEffect(() => {
-		const container = document.getElementById("scroll-container");
-		if (!container) return;
+		if (!isLandingPage) return;
 
-		const sections = container.querySelectorAll("section[data-theme]");
+		const sections = document.querySelectorAll("[data-theme]");
+		if (!sections.length) return;
 
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -80,9 +71,9 @@ export default function Navbar() {
 				});
 			},
 			{
-				root: container,
-				rootMargin: "-40% 0px -40% 0px",
+				root: null, // viewport
 				threshold: 0,
+				rootMargin: "-1px 0px -99% 0px",
 			},
 		);
 
