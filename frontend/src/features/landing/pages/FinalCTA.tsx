@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router";
 
 export default function FinalCTA() {
 	return (
@@ -33,12 +32,12 @@ export default function FinalCTA() {
 
 				{/* CTA buttons */}
 				<div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-10 md:mt-12 w-full sm:w-auto">
-					<Link
-						to="/join"
+					<a
+						href="/join"
 						className="w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 text-[11px] md:text-xs tracking-widest uppercase bg-black text-white hover:bg-neutral-800 transition-all duration-300 text-center"
 					>
 						Apply to Join
-					</Link>
+					</a>
 
 					<a
 						href="/#schedule"

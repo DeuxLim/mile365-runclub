@@ -27,7 +27,7 @@ export default function LandingPage() {
 					behavior: "smooth",
 					block: "start",
 				});
-			}, 50);
+			}, 100);
 		}
 	}, [location]);
 

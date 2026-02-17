@@ -8,7 +8,7 @@ export default function JoinPage() {
 		>
 			<div className="max-w-5xl mx-auto">
 				<h1 className="text-4xl md:text-6xl text-center font-heading mb-12">
-					Apply to Join MILE 365
+					JOIN TEAM 365
 				</h1>
 
 				<JoinForm />
