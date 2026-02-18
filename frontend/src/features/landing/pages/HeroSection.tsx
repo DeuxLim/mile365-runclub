@@ -61,7 +61,7 @@ export default function HeroSection() {
 					</h1>
 
 					<p className="mt-6 sm:mt-7 md:mt-8 max-w-xl md:max-w-2xl text-sm sm:text-base md:text-lg text-neutral-300 leading-relaxed">
-						More than a run club — it’s a commitment. Show up, stay
+						More than a run club — it's a commitment. Show up, stay
 						consistent, and move forward with a community that
 						trains hard and grows together.
 					</p>
@@ -93,7 +93,7 @@ export default function HeroSection() {
 					${barVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}
 				`}
 			>
-				<div className="w-full h-[2px] bg-white/20 rounded-full overflow-hidden">
+				<div className="w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
 					<div
 						className="h-full bg-white transition-[width] duration-700 ease-linear"
 						style={{ width: `${progress}%` }}
