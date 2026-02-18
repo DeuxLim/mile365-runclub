@@ -132,3 +132,15 @@ export const membershipRequestSchema = z.object({
 	...waiverSchema.shape,
 	...adminSchema.shape,
 });
+
+export const membershipRequestInputSchema = z.object({
+	...identitySchema.shape,
+	...locationSchema.shape,
+	...trainingSchema.shape,
+	...communityPlatformsSchema.shape,
+	...healthSafetySchema.shape,
+	...expectationsSchema.shape,
+	...communitySchema.shape,
+	...waiverSchema.shape,
+	...adminSchema.shape,
+});

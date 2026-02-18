@@ -6,37 +6,116 @@ import { Checkbox } from "../../../components/form/Checkbox";
 import { CheckboxGroup } from "../../../components/form/CheckboxGroup";
 import { SelectInput } from "../../../components/form/SelectInput";
 import { TextareaInput } from "../../../components/form/TextareaInput";
-import { membershipRequestSchema } from "../schemas/membership-request.schema";
+import { membershipRequestInputSchema } from "../schemas/membership-request.schema";
+import { useMutation } from "@tanstack/react-query";
+import { submitMembershipRequest } from "../membership.service";
+import type { AxiosError } from "axios";
+import type { LaravelValidationError } from "../types/membership-request.types";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
-type FormValues = z.input<typeof membershipRequestSchema>;
+type FormValues = z.input<typeof membershipRequestInputSchema>;
 
 export default function JoinForm() {
+	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
 		reset,
-		formState: { errors, isSubmitting },
+		setError,
+		formState: { errors, isDirty },
 	} = useForm<FormValues>({
-		resolver: zodResolver(membershipRequestSchema),
+		resolver: zodResolver(membershipRequestInputSchema),
 		defaultValues: {
 			training_types: [],
 			platforms_joined: [],
 		},
 	});
 
+	const mutation = useMutation({
+		mutationFn: submitMembershipRequest,
+
+		onSuccess: (response) => {
+			reset();
+
+			navigate("/join/success", {
+				state: {
+					applicationId: response.data.id,
+				},
+			});
+		},
+
+		onError: (error: AxiosError<LaravelValidationError>): void => {
+			if (!error.response) return;
+
+			if (error.response.status === 422) {
+				const validationErrors = error.response.data.errors;
+
+				Object.entries(validationErrors).forEach(
+					([field, messages]) => {
+						setError(field as keyof FormValues, {
+							type: "server",
+							message: (messages as string[])[0],
+						});
+					},
+				);
+
+				return;
+			}
+
+			// other server errors
+			console.error("Server error:", error.response.data);
+		},
+	});
+
+	const globalError =
+		mutation.isError && !mutation.error?.response
+			? "Something went wrong. Please try again."
+			: null;
+
 	const submitForm: SubmitHandler<FormValues> = async (data) => {
-		console.log(data);
-		setTimeout(() => {
-			console.log("finished loading");
-		}, 4000);
-		reset();
+		mutation.mutate(data);
 	};
+
+	const isLoading = mutation.isPending;
+
+	useEffect(() => {
+		const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+			if (!isDirty) return;
+
+			e.preventDefault();
+			e.returnValue = "";
+		};
+
+		window.addEventListener("beforeunload", handleBeforeUnload);
+
+		return () => {
+			window.removeEventListener("beforeunload", handleBeforeUnload);
+		};
+	}, [isDirty]);
 
 	return (
 		<form
-			onSubmit={handleSubmit(submitForm)}
+			onSubmit={handleSubmit(submitForm, (): void => {
+				const firstError = document.querySelector(
+					"[aria-invalid='true']",
+				) as HTMLElement | null;
+
+				firstError?.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+				});
+
+				firstError?.focus();
+			})}
 			className="space-y-14 md:space-y-16 max-w-4xl mx-auto"
 		>
+			{globalError && (
+				<div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded">
+					{globalError}
+				</div>
+			)}
+
 			{/* -------------------------------------------------------------------- */}
 			{/* BASIC IDENTITY                                                       */}
 			{/* -------------------------------------------------------------------- */}
@@ -302,12 +381,6 @@ export default function JoinForm() {
 						error={errors.medical_conditions?.message}
 					/>
 				</div>
-
-				<Checkbox
-					label="I confirm I am physically capable of participating in running sessions"
-					{...register("fitness_acknowledgment")}
-					error={errors.fitness_acknowledgment?.message}
-				/>
 			</section>
 
 			{/* -------------------------------------------------------------------- */}
@@ -431,10 +504,14 @@ export default function JoinForm() {
 			{/* -------------------------------------------------------------------- */}
 			<button
 				type="submit"
-				disabled={isSubmitting}
-				className="w-full md:w-auto bg-black text-white py-4 px-10 uppercase tracking-widest text-xs hover:bg-neutral-800 transition"
+				disabled={isLoading}
+				className="w-full md:w-auto bg-black text-white py-4 px-10 uppercase tracking-widest text-xs hover:bg-neutral-800 transition flex items-center justify-center gap-2 disabled:opacity-60"
 			>
-				Submit Application
+				{isLoading && (
+					<span className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+				)}
+
+				{isLoading ? "Submitting..." : "Submit Application"}
 			</button>
 		</form>
 	);
