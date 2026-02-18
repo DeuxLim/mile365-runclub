@@ -18,6 +18,7 @@ export function SelectInput({
 	return (
 		<div className="space-y-1">
 			<select
+				aria-invalid={!!error}
 				{...props}
 				className="
           border border-neutral-300

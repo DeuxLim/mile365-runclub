@@ -8,6 +8,7 @@ export function TextareaInput({ error, ...props }: TextareaInputProps) {
 	return (
 		<div className="space-y-1">
 			<textarea
+				aria-invalid={!!error}
 				{...props}
 				className="
           border border-neutral-300

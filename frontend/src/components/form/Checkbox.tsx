@@ -10,6 +10,7 @@ export function Checkbox({ label, error, ...props }: CheckboxProps) {
 		<div className="space-y-1">
 			<label className="flex items-start gap-3 text-sm leading-relaxed cursor-pointer">
 				<input
+					aria-invalid={!!error}
 					type="checkbox"
 					{...props}
 					className="mt-1 size-4 shrink-0"
