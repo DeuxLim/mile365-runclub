@@ -7,7 +7,9 @@ import WaiverAndTermsPage from "../pages/waiver-and-terms.tsx";
 
 const LandingPage = lazy(() => import("../features/landing/pages/LandingPage"));
 
-const JoinPage = lazy(() => import("../features/join/pages/JoinPage"));
+const JoinPage = lazy(
+	() => import("../features/membership/pages/JoinPage.tsx"),
+);
 
 export const router = createBrowserRouter([
 	{
