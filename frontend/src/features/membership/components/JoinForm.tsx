@@ -300,18 +300,19 @@ export default function JoinForm() {
 			{/* -------------------------------------------------------------------- */}
 			{/* COMMUNITY PLATFORMS                                                  */}
 			{/* -------------------------------------------------------------------- */}
-			<section className="space-y-6">
+			<section className="space-y-8">
 				<h3 className="text-lg md:text-xl font-semibold">
 					Community Platforms
 				</h3>
 
-				<p className="text-sm text-neutral-600">
+				<p className="text-sm text-neutral-600 max-w-prose">
 					Facebook Group and Community Chat are required so we can
 					contact you and add you to the main club group after
 					approval.
 				</p>
 
-				<div className="grid sm:grid-cols-2 gap-3 text-sm">
+				{/* REQUIRED CHECKBOXES */}
+				<div className="space-y-3">
 					<Checkbox
 						label="Facebook Group (Required)"
 						{...register("fb_group_joined")}
@@ -325,6 +326,13 @@ export default function JoinForm() {
 						error={errors.community_chat_joined?.message}
 						required
 					/>
+				</div>
+
+				{/* OPTIONAL SOCIAL PLATFORMS */}
+				<div className="space-y-3">
+					<p className="text-sm font-medium">
+						Other platforms you're part of
+					</p>
 
 					<CheckboxGroup
 						name="platforms_joined"
@@ -335,22 +343,25 @@ export default function JoinForm() {
 							"Strava Club",
 						]}
 						register={register}
-						columns="grid-cols-2"
+						columns="grid-cols-2 sm:grid-cols-3"
 						error={errors.platforms_joined?.message}
 					/>
 				</div>
 
-				<TextInput
-					placeholder="Facebook profile name used to join the group *"
-					{...register("facebook_profile_name")}
-					error={errors.facebook_profile_name?.message}
-				/>
+				{/* PROFILE FIELDS */}
+				<div className="space-y-4">
+					<TextInput
+						placeholder="Facebook profile name used to join the group *"
+						{...register("facebook_profile_name")}
+						error={errors.facebook_profile_name?.message}
+					/>
 
-				<TextInput
-					placeholder="Messenger display name *"
-					{...register("messenger_name")}
-					error={errors.messenger_name?.message}
-				/>
+					<TextInput
+						placeholder="Messenger display name *"
+						{...register("messenger_name")}
+						error={errors.messenger_name?.message}
+					/>
+				</div>
 			</section>
 
 			{/* -------------------------------------------------------------------- */}

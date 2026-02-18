@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router";
 import { TbX } from "react-icons/tb";
 
 type MobileMenuProps = {
@@ -8,15 +9,17 @@ type MobileMenuProps = {
 };
 
 const links = [
-	{ label: "Home", href: "#home" },
-	{ label: "About", href: "#about" },
-	{ label: "Schedule", href: "#schedule" },
-	{ label: "Why Join", href: "#benefits" },
-	{ label: "FAQ", href: "#faq" },
+	{ label: "Home", id: "home" },
+	{ label: "About", id: "about" },
+	{ label: "Schedule", id: "schedule" },
+	{ label: "Why Join", id: "benefits" },
+	{ label: "FAQ", id: "faq" },
 ];
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
-	// iOS-safe scroll lock (no UI change)
+	const navigate = useNavigate();
+
+	// iOS-safe scroll lock
 	useEffect(() => {
 		if (!open) return;
 
@@ -34,7 +37,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 		};
 	}, [open]);
 
-	// Escape key only when open
+	// Escape key support
 	useEffect(() => {
 		if (!open) return;
 
@@ -46,10 +49,17 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 		return () => window.removeEventListener("keydown", handler);
 	}, [open, onClose]);
 
+	const goToSection = (id: string) => {
+		onClose();
+
+		// navigate to homepage with hash
+		navigate(`/#${id}`);
+	};
+
 	return createPortal(
 		<div
 			className={`
-				fixed inset-0 z-[100]
+				fixed inset-0 z-100
 				bg-black text-white
 				transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
 				${open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"}
@@ -67,10 +77,9 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 			{/* Menu Content */}
 			<div className="flex flex-col h-full justify-center items-center space-y-10">
 				{links.map((item, i) => (
-					<a
+					<button
 						key={item.label}
-						href={item.href}
-						onClick={onClose}
+						onClick={() => goToSection(item.id)}
 						className={`
 							text-2xl uppercase tracking-widest font-semibold
 							transition-all duration-300
@@ -79,14 +88,13 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 						style={{ transitionDelay: `${i * 80}ms` }}
 					>
 						{item.label}
-					</a>
+					</button>
 				))}
 
 				<div className="w-12 h-px bg-white/20 my-4" />
 
-				<a
-					href="#join"
-					onClick={onClose}
+				<button
+					onClick={() => goToSection("join")}
 					className={`
 						mt-4 px-8 py-3 text-xs uppercase tracking-widest
 						border border-white
@@ -97,7 +105,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 					style={{ transitionDelay: `${links.length * 80}ms` }}
 				>
 					Join Mile 365
-				</a>
+				</button>
 			</div>
 		</div>,
 		document.body,
