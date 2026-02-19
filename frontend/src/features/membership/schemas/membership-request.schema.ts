@@ -6,12 +6,22 @@ import { z } from "zod";
 |--------------------------------------------------------------------------
 */
 export const identitySchema = z.object({
-	first_name: z.string().min(1),
-	last_name: z.string().min(1),
-	email: z.string().email(),
-	phone: z.string().min(7),
-	birthdate: z.string().min(1),
-	gender: z.enum(["male", "female", "other"]),
+	first_name: z.string().trim().min(1, "First name is required."),
+	last_name: z.string().trim().min(1, "Last name is required."),
+	email: z
+		.string()
+		.trim()
+		.min(1, "Email is required.")
+		.email("Please enter a valid email address."),
+	phone: z
+		.string()
+		.trim()
+		.min(1, "Phone number is required.")
+		.min(7, "Please enter a valid phone number."),
+	birthdate: z.string().trim().min(1, "Birthdate is required."),
+	gender: z.enum(["male", "female", "other"], {
+		message: "Please select your gender.",
+	}),
 });
 
 /*
@@ -21,10 +31,12 @@ export const identitySchema = z.object({
 */
 export const locationSchema = z.object({
 	country: z.string(),
-	province: z.string(),
-	city: z.string(),
+	province: z.string().trim().min(1, "Province is required."),
+	city: z.string().trim().min(1, "City is required."),
 	barangay: z.string(),
-	location_confirmation: z.boolean().default(false),
+	location_confirmation: z.boolean().refine((value) => value === true, {
+		message: "Please confirm attendance around Malolos / Bulacan.",
+	}),
 });
 
 /*
@@ -37,14 +49,23 @@ export const trainingSchema = z.object({
 		z.enum(["running", "gym", "hybrid", "cycling", "triathlon"]),
 	),
 
-	experience_level: z.enum(["beginner", "intermediate", "advanced"]),
+	experience_level: z
+		.union([
+			z.enum(["beginner", "intermediate", "advanced"]),
+			z.literal(""),
+		])
+		.optional()
+		.transform((value) => (value === "" ? undefined : value)),
 
 	years_running: z.coerce.number().int().nonnegative(),
 	weekly_distance_km: z.coerce.number().nonnegative(),
 
 	average_run_pace: z.string(),
 
-	preferred_run_time: z.enum(["morning", "afternoon", "evening"]),
+	preferred_run_time: z
+		.union([z.enum(["morning", "afternoon", "evening"]), z.literal("")])
+		.optional()
+		.transform((value) => (value === "" ? undefined : value)),
 
 	goals: z.string(),
 });
@@ -55,13 +76,25 @@ export const trainingSchema = z.object({
 |--------------------------------------------------------------------------
 */
 export const communityPlatformsSchema = z.object({
-	fb_group_joined: z.boolean().default(false),
-	community_chat_joined: z.boolean().default(false),
+	fb_group_joined: z.boolean().refine((value) => value === true, {
+		message: "Facebook Group is required.",
+	}),
+	community_chat_joined: z.boolean().refine((value) => value === true, {
+		message: "Community Chat is required.",
+	}),
 
-	platforms_joined: z.array(z.string()),
+	platforms_joined: z
+		.array(z.string())
+		.min(1, "Please select at least one other platform."),
 
-	facebook_profile_name: z.string(),
-	messenger_name: z.string(),
+	facebook_profile_name: z
+		.string()
+		.trim()
+		.min(1, "Facebook profile name is required."),
+	messenger_name: z
+		.string()
+		.trim()
+		.min(1, "Messenger display name is required."),
 });
 
 /*
@@ -70,10 +103,19 @@ export const communityPlatformsSchema = z.object({
 |--------------------------------------------------------------------------
 */
 export const healthSafetySchema = z.object({
-	emergency_contact_name: z.string(),
-	emergency_contact_phone: z.string(),
+	emergency_contact_name: z
+		.string()
+		.trim()
+		.min(1, "Emergency contact name is required."),
+	emergency_contact_phone: z
+		.string()
+		.trim()
+		.min(1, "Emergency contact phone is required.")
+		.min(7, "Please enter a valid emergency contact phone number."),
 	medical_conditions: z.string(),
-	fitness_acknowledgment: z.boolean().default(false),
+	fitness_acknowledgment: z.boolean().refine((value) => value === true, {
+		message: "Please confirm fitness acknowledgment.",
+	}),
 });
 
 /*
@@ -82,9 +124,15 @@ export const healthSafetySchema = z.object({
 |--------------------------------------------------------------------------
 */
 export const expectationsSchema = z.object({
-	attendance_commitment: z.boolean().default(false),
-	activity_expectation: z.boolean().default(false),
-	community_behavior: z.boolean().default(false),
+	attendance_commitment: z.boolean().refine((value) => value === true, {
+		message: "Please confirm attendance commitment.",
+	}),
+	activity_expectation: z.boolean().refine((value) => value === true, {
+		message: "Please confirm activity expectation.",
+	}),
+	community_behavior: z.boolean().refine((value) => value === true, {
+		message: "Please agree to community behavior.",
+	}),
 });
 
 /*
@@ -103,9 +151,15 @@ export const communitySchema = z.object({
 |--------------------------------------------------------------------------
 */
 export const waiverSchema = z.object({
-	agreed_to_rules: z.boolean(),
-	safety_commitment: z.boolean().default(false),
-	media_consent: z.boolean().default(false),
+	agreed_to_rules: z.boolean().refine((value) => value === true, {
+		message: "You must agree to the waiver and terms.",
+	}),
+	safety_commitment: z.boolean().refine((value) => value === true, {
+		message: "Please confirm safety commitment.",
+	}),
+	media_consent: z.boolean().refine((value) => value === true, {
+		message: "Please confirm media consent.",
+	}),
 });
 
 /*
@@ -115,7 +169,11 @@ export const waiverSchema = z.object({
 */
 export const adminSchema = z.object({
 	agreed_at: z.string().datetime().optional(),
-	status: z.enum(["pending", "approved", "rejected"]).default("pending"),
+	status: z
+		.enum(["pending", "approved", "rejected"], {
+			message: "Please select a valid status.",
+		})
+		.default("pending"),
 	reviewed_by: z.string().nullable().optional(),
 	reviewed_at: z.string().datetime().nullable().optional(),
 	admin_notes: z.string().nullable().optional(),
