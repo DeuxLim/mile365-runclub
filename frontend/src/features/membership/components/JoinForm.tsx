@@ -32,7 +32,7 @@ export default function JoinForm() {
 		},
 	});
 
-	const mutation = useMutation({
+	const { mutate, isError, error, isPending } = useMutation({
 		mutationFn: submitMembershipRequest,
 
 		onSuccess: (response) => {
@@ -69,15 +69,15 @@ export default function JoinForm() {
 	});
 
 	const globalError =
-		mutation.isError && !mutation.error?.response
+		isError && !error?.response
 			? "Something went wrong. Please try again."
 			: null;
 
 	const submitForm: SubmitHandler<FormValues> = async (data) => {
-		mutation.mutate(data);
+		mutate(data);
 	};
 
-	const isLoading = mutation.isPending;
+	const isLoading = isPending;
 
 	useEffect(() => {
 		const handleBeforeUnload = (e: BeforeUnloadEvent) => {
