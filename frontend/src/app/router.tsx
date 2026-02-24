@@ -6,6 +6,11 @@ import { ROUTES } from "./paths.tsx";
 import WaiverAndTermsPage from "../pages/waiver-and-terms.tsx";
 import JoinSuccess from "@/features/membership/pages/JoinSuccess.tsx";
 
+import AdminLayout from "@/features/admin/layouts/AdminLayout";
+import AdminLoginPage from "@/features/admin/pages/AdminLoginPage.tsx";
+import RequireAuth from "@/features/admin/components/RequireAuth";
+import AdminDashboardPage from "@/features/admin/pages/AdminDashboardPage.tsx";
+
 const LandingPage = lazy(() => import("../features/landing/pages/LandingPage"));
 
 const JoinPage = lazy(
@@ -32,6 +37,28 @@ export const router = createBrowserRouter([
 			{
 				path: ROUTES.JOINSUCCESS,
 				element: <JoinSuccess />,
+			},
+		],
+	},
+	{
+		path: ROUTES.ADMIN.INDEX,
+		element: <AdminLayout />,
+		children: [
+			{
+				index: true,
+				element: <AdminLoginPage />,
+			},
+			{
+				path: ROUTES.ADMIN.LOGIN,
+				element: <AdminLoginPage />,
+			},
+			{
+				path: ROUTES.ADMIN.DASHBOARD,
+				element: (
+					<RequireAuth>
+						<AdminDashboardPage />
+					</RequireAuth>
+				),
 			},
 		],
 	},
