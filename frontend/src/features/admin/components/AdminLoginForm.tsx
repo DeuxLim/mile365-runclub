@@ -22,7 +22,7 @@ export default function AdminLoginForm() {
 		reset,
 		setError,
 		formState: { errors },
-	} = useForm<Login>({
+	} = useForm<AdminLoginCredentials>({
 		resolver: zodResolver(loginSchema),
 	});
 
@@ -40,7 +40,7 @@ export default function AdminLoginForm() {
 			if (!serverErrors) return;
 
 			Object.entries(serverErrors).forEach(([field, messages]) => {
-				setError(field as keyof Login, {
+				setError(field as keyof AdminLoginCredentials, {
 					type: "server",
 					message: messages[0],
 				});
@@ -48,7 +48,7 @@ export default function AdminLoginForm() {
 		},
 	});
 
-	const submitForm = (data: Login) => {
+	const submitForm = (data: AdminLoginCredentials) => {
 		mutate(data);
 	};
 
