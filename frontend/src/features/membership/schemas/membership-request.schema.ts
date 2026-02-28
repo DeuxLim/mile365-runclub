@@ -180,15 +180,16 @@ export const adminSchema = z.object({
 });
 
 export const membershipRequestSchema = z.object({
-	...identitySchema.shape,
-	...locationSchema.shape,
-	...trainingSchema.shape,
-	...communityPlatformsSchema.shape,
-	...healthSafetySchema.shape,
-	...expectationsSchema.shape,
-	...communitySchema.shape,
-	...waiverSchema.shape,
-	...adminSchema.shape,
+	id: z.number(),
+	identity: identitySchema,
+	location: locationSchema,
+	training: trainingSchema,
+	community_platforms: communityPlatformsSchema,
+	health: healthSafetySchema,
+	membership_expectations: expectationsSchema,
+	culture_fit: communitySchema,
+	waiver: waiverSchema,
+	review: adminSchema,
 });
 
 export const membershipRequestInputSchema = z.object({

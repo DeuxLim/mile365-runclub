@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { MembershipRequest } from "@/features/membership/types/membership-request.types";
 import { useQuery } from "@tanstack/react-query";
 import { getMembershipRequests } from "../admin.service";
 
@@ -9,7 +10,7 @@ export default function MembershipRequestsPage() {
 		staleTime: 1000 * 60 * 10,
 	});
 
-	const [selected, setSelected] = useState<any | null>(null);
+	const [selected, setSelected] = useState<MembershipRequest | null>(null);
 
 	if (isPending) {
 		return <div className="p-6">Loading membership requests...</div>;
@@ -27,7 +28,7 @@ export default function MembershipRequestsPage() {
 
 			{/* TABLE */}
 			<div className="overflow-x-auto rounded-md border border-zinc-200">
-				<table className="min-w-full text-sm">
+				<table className="min-w-full text-xs">
 					<thead className="bg-gray-100 text-left">
 						<tr>
 							<th className="px-4 py-3">Name</th>
@@ -39,13 +40,14 @@ export default function MembershipRequestsPage() {
 						</tr>
 					</thead>
 					<tbody>
-						{requests.map((req: any) => (
+						{requests.map((req: MembershipRequest) => (
 							<tr
 								key={req.id}
 								className="border-t border-zinc-200 hover:bg-gray-50"
 							>
 								<td className="px-4 py-3 font-medium">
-									{req.identity.full_name}
+									{req.identity.first_name +
+										req.identity.last_name}
 								</td>
 
 								<td className="px-4 py-3">
