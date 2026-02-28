@@ -1,17 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { Navigate, Outlet } from "react-router";
-import { getAuthenticatedAdmin } from "../admin.service";
+import { useAdmin } from "@/hooks/useAuthenticatedAdmin";
 
 export default function RequireAuth() {
-	const {
-		data: admin,
-		isPending,
-		isError,
-	} = useQuery({
-		queryKey: ["admin", "me"],
-		queryFn: getAuthenticatedAdmin,
-		retry: false,
-	});
+	const { admin, isPending, isError } = useAdmin();
 
 	if (isPending) {
 		return (
