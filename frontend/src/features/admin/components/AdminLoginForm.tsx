@@ -1,16 +1,17 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { submitLoginCredentials } from "../admin.service";
 import type { LaravelValidationError } from "@/features/membership/types/membership-request.types";
 import type { AxiosError } from "axios";
 import { useNavigate } from "react-router";
-import type { AdminLoginCredentials, AdminUser } from "../types/admin.types";
+import type { AdminLoginCredentials } from "../types/admin.types";
 import { loginSchema } from "../schemas/login.schema";
+import { useAdmin } from "@/hooks/useAuthenticatedAdmin";
 
 export default function AdminLoginForm() {
 	const navigate = useNavigate();
-	const queryClient = useQueryClient();
+	const { setAdmin } = useAdmin();
 
 	const {
 		register,
@@ -25,7 +26,7 @@ export default function AdminLoginForm() {
 	const { isPending, mutate, isError, error } = useMutation({
 		mutationFn: submitLoginCredentials,
 		onSuccess: async (response) => {
-			queryClient.setQueryData<AdminUser>(["admin", "me"], response.user);
+			setAdmin(response.user);
 			navigate("/admin/dashboard");
 			reset();
 		},
