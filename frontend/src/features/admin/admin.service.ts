@@ -20,3 +20,8 @@ export const getAuthenticatedAdmin = async (): Promise<AdminUser> => {
 	const response = await api.get<AdminAuthResponse>("/admin/me");
 	return response.data.user;
 };
+
+export const getMembershipRequests = async () => {
+	const response = await api.get("/admin/membership-requests");
+	return response.data;
+};
