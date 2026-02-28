@@ -9,6 +9,8 @@ import JoinSuccess from "@/features/membership/pages/JoinSuccess.tsx";
 import AdminLoginPage from "@/features/admin/pages/AdminLoginPage.tsx";
 import RequireAuth from "@/features/admin/components/RequireAuth";
 import AdminDashboardPage from "@/features/admin/pages/AdminDashboardPage.tsx";
+import AdminLayout from "@/features/admin/layouts/AdminLayout.tsx";
+import MembershipRequestsPage from "@/features/admin/pages/MembershipRequestsPage.tsx";
 
 const LandingPage = lazy(() => import("../features/landing/pages/LandingPage"));
 
@@ -55,8 +57,17 @@ export const router = createBrowserRouter([
 				element: <RequireAuth />,
 				children: [
 					{
-						path: "dashboard",
-						element: <AdminDashboardPage />,
+						element: <AdminLayout />,
+						children: [
+							{
+								path: "dashboard",
+								element: <AdminDashboardPage />,
+							},
+							{
+								path: "membership-requests",
+								element: <MembershipRequestsPage />,
+							},
+						],
 					},
 				],
 			},
