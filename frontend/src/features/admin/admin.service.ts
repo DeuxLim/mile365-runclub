@@ -25,3 +25,8 @@ export const getMembershipRequests = async () => {
 	const response = await api.get("/admin/membership-requests");
 	return response.data;
 };
+
+export const logoutAdmin = async () => {
+	const response = await api.post("/admin/logout");
+	return response.data;
+};
